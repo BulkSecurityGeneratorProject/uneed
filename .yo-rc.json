@@ -1,0 +1,40 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.hongz.uneed",
+      "nativeLanguage": "en"
+    },
+    "jhipsterVersion": "6.1.2",
+    "applicationType": "monolith",
+    "baseName": "uneed",
+    "packageName": "com.hongz.uneed",
+    "packageFolder": "com/hongz/uneed",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "YmVkYTg5YWQ5YjNlN2Q5MGE4MTMyODljMzZiOGJhNmQ4NGZjMTY1NTBmODQ2ZWMxNzk5YTQ0ZjkwNjIzYWQ3OWYzMTBjZDBmNGQxNTMzNDc5NDVhYWExNjVkMzk0OWE2MGI2NzExZDkwZGQyMThiOTFhMWI5YjI1YzI3NDY0M2Y=",
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "angularX",
+    "clientTheme": "yeti",
+    "clientThemeVariant": "primary",
+    "testFrameworks": ["gatling"],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": true,
+    "nativeLanguage": "en",
+    "languages": ["en", "zh-cn", "zh-tw", "fr"]
+  }
+}
