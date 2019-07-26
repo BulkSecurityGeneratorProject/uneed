@@ -1,0 +1,29 @@
+{
+  "uneedApp": {
+    "userJob": {
+      "home": {
+        "title": "User Jobs",
+        "createLabel": "建立一筆新的 User Job",
+        "createOrEditLabel": "建立或編輯 User Job",
+        "notFound": "No User Job found"
+      },
+      "created": "新的 User Job 建立成功，識別碼為 {{ param }}",
+      "updated": "識別碼為 {{ param }} 的 User Job 更新成功",
+      "deleted": "識別碼為 {{ param }} 的 User Job 刪除成功",
+      "delete": {
+        "question": "您確定要刪除 User Job {{ id }} 嗎?"
+      },
+      "detail": {
+        "title": "User Job"
+      },
+      "name": "Name",
+      "description": "Description",
+      "price": "Price",
+      "currency": "Currency",
+      "imageUrl": "Image Url",
+      "createDate": "Create Date",
+      "lastUpdateDate": "Last Update Date",
+      "user": "User"
+    }
+  }
+}

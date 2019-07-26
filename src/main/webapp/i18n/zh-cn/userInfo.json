@@ -1,0 +1,28 @@
+{
+  "uneedApp": {
+    "userInfo": {
+      "home": {
+        "title": "User Infos",
+        "createLabel": "创建新 User Info",
+        "createOrEditLabel": "创建或编辑 User Info",
+        "notFound": "No User Info found"
+      },
+      "created": "User Info {{ param }} 创建成功",
+      "updated": "User Info {{ param }} 更新成功",
+      "deleted": "User Info {{ param }} 删除成功",
+      "delete": {
+        "question": "你确定要删除 User Info {{ id }} 吗？"
+      },
+      "detail": {
+        "title": "User Info"
+      },
+      "phone": "Phone",
+      "mobilePhone": "Mobile Phone",
+      "emailFlag": "Email Flag",
+      "smsFlag": "Sms Flag",
+      "birthDate": "Birth Date",
+      "gender": "Gender",
+      "user": "User"
+    }
+  }
+}

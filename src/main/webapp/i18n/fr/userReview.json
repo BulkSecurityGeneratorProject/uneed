@@ -1,0 +1,26 @@
+{
+  "uneedApp": {
+    "userReview": {
+      "home": {
+        "title": "UserReviews",
+        "createLabel": "Créer un nouveau User Review",
+        "createOrEditLabel": "Créer ou éditer un User Review",
+        "notFound": "Aucun User Review trouvé"
+      },
+      "created": "Un nouveau User Review a été créé avec l'identifiant {{ param }}",
+      "updated": "Le User Review avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le User Review avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le User Review {{ id }} ?"
+      },
+      "detail": {
+        "title": "User Review"
+      },
+      "score": "Score",
+      "comment": "Comment",
+      "date": "Date",
+      "reviewer": "Reviewer",
+      "user": "User"
+    }
+  }
+}

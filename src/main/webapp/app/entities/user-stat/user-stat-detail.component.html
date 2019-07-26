@@ -1,0 +1,39 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="userStat">
+            <h2><span jhiTranslate="uneedApp.userStat.detail.title">User Stat</span> {{userStat.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="uneedApp.userStat.viewCount">View Count</span></dt>
+                <dd>
+                    <span>{{userStat.viewCount}}</span>
+                </dd>
+                <dt><span jhiTranslate="uneedApp.userStat.reviewCount">Review Count</span></dt>
+                <dd>
+                    <span>{{userStat.reviewCount}}</span>
+                </dd>
+                <dt><span jhiTranslate="uneedApp.userStat.rating">Rating</span></dt>
+                <dd>
+                    <span>{{userStat.rating}}</span>
+                </dd>
+                <dt><span jhiTranslate="uneedApp.userStat.user">User</span></dt>
+                <dd>
+                    {{userStat.user?.id}}
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/user-stat', userStat.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

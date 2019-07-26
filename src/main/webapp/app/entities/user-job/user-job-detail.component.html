@@ -1,0 +1,55 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="userJob">
+            <h2><span jhiTranslate="uneedApp.userJob.detail.title">User Job</span> {{userJob.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="uneedApp.userJob.name">Name</span></dt>
+                <dd>
+                    <span>{{userJob.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="uneedApp.userJob.description">Description</span></dt>
+                <dd>
+                    <span>{{userJob.description}}</span>
+                </dd>
+                <dt><span jhiTranslate="uneedApp.userJob.price">Price</span></dt>
+                <dd>
+                    <span>{{userJob.price}}</span>
+                </dd>
+                <dt><span jhiTranslate="uneedApp.userJob.currency">Currency</span></dt>
+                <dd>
+                    <span>{{userJob.currency}}</span>
+                </dd>
+                <dt><span jhiTranslate="uneedApp.userJob.imageUrl">Image Url</span></dt>
+                <dd>
+                    <span>{{userJob.imageUrl}}</span>
+                </dd>
+                <dt><span jhiTranslate="uneedApp.userJob.createDate">Create Date</span></dt>
+                <dd>
+                    <span>{{userJob.createDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="uneedApp.userJob.lastUpdateDate">Last Update Date</span></dt>
+                <dd>
+                    <span>{{userJob.lastUpdateDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="uneedApp.userJob.user">User</span></dt>
+                <dd>
+                    {{userJob.userId}}
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/user-job', userJob.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

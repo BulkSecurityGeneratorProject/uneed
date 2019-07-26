@@ -1,0 +1,45 @@
+entity UserJob {
+	name String required,
+    description String,
+    price BigDecimal,
+    currency String,
+    imageUrl String,
+    createDate ZonedDateTime,
+    lastUpdateDate ZonedDateTime
+}
+
+entity UserInfo {
+	phone String,
+    mobilePhone String,
+    emailFlag Boolean,
+    smsFlag Boolean,
+    birthDate LocalDate,
+    gender Gender
+}
+
+enum Gender {
+	MALE, FEMALE, OTHER
+}
+
+relationship OneToOne {
+	UserInfo{user} to User,
+    UserJob{user} to User
+}
+
+// Set pagination options
+// paginate JobHistory, Employee with infinite-scroll
+paginate UserJob with pagination
+
+// Use Data Transfert Objects (DTO)
+dto UserJob with mapstruct
+
+// skipClient Address
+
+// Set service options to all except few
+// service all with serviceImpl except Employee, Job
+service UserJob, UserInfo with serviceClass
+
+filter UserJob, UserInfo
+
+// Set an angular suffix
+// angularSuffix * with mySuffix

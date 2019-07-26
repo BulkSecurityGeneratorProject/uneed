@@ -1,0 +1,29 @@
+{
+  "uneedApp": {
+    "userJob": {
+      "home": {
+        "title": "User Jobs",
+        "createLabel": "Create a new User Job",
+        "createOrEditLabel": "Create or edit a User Job",
+        "notFound": "No User Job found"
+      },
+      "created": "A new User Job is created with identifier {{ param }}",
+      "updated": "A User Job is updated with identifier {{ param }}",
+      "deleted": "A User Job is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete User Job {{ id }}?"
+      },
+      "detail": {
+        "title": "User Job"
+      },
+      "name": "Name",
+      "description": "Description",
+      "price": "Price",
+      "currency": "Currency",
+      "imageUrl": "Image Url",
+      "createDate": "Create Date",
+      "lastUpdateDate": "Last Update Date",
+      "user": "User"
+    }
+  }
+}

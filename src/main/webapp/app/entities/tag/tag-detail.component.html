@@ -1,0 +1,33 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="tag">
+            <h2><span jhiTranslate="uneedApp.tag.detail.title">Tag</span> {{tag.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="uneedApp.tag.name">Name</span></dt>
+                <dd>
+                    <span>{{tag.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="uneedApp.tag.userJob">User Job</span></dt>
+                <dd>
+                    <div *ngIf="tag.userJob">
+                        <a [routerLink]="['/user-job', tag.userJob?.id, 'view']">{{tag.userJob?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/tag', tag.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

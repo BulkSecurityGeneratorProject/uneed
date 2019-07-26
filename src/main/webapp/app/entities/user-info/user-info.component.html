@@ -1,0 +1,71 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="uneedApp.userInfo.home.title">User Infos</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-user-info" [routerLink]="['/user-info/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="uneedApp.userInfo.home.createLabel">
+            Create new User Info
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="userInfos?.length === 0">
+        <span jhiTranslate="uneedApp.userInfo.home.notFound">No userInfos found</span>
+    </div>
+    <div class="table-responsive" *ngIf="userInfos?.length > 0">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="uneedApp.userInfo.phone">Phone</span></th>
+            <th><span jhiTranslate="uneedApp.userInfo.mobilePhone">Mobile Phone</span></th>
+            <th><span jhiTranslate="uneedApp.userInfo.emailFlag">Email Flag</span></th>
+            <th><span jhiTranslate="uneedApp.userInfo.smsFlag">Sms Flag</span></th>
+            <th><span jhiTranslate="uneedApp.userInfo.birthDate">Birth Date</span></th>
+            <th><span jhiTranslate="uneedApp.userInfo.gender">Gender</span></th>
+            <th><span jhiTranslate="uneedApp.userInfo.user">User</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let userInfo of userInfos ;trackBy: trackId">
+                <td><a [routerLink]="['/user-info', userInfo.id, 'view' ]">{{userInfo.id}}</a></td>
+                <td>{{userInfo.phone}}</td>
+                <td>{{userInfo.mobilePhone}}</td>
+                <td>{{userInfo.emailFlag}}</td>
+                <td>{{userInfo.smsFlag}}</td>
+                <td>{{userInfo.birthDate | date:'mediumDate'}}</td>
+                <td jhiTranslate="{{'uneedApp.Gender.' + userInfo.gender}}">{{userInfo.gender}}</td>
+                <td>
+                    {{userInfo.user?.id}}
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/user-info', userInfo.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/user-info', userInfo.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'user-info', { outlets: { popup: userInfo.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

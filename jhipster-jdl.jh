@@ -1,0 +1,88 @@
+entity UserJob {
+	name String required,
+    description String,
+    price BigDecimal,
+    currency String,
+    imageUrl String,
+    createDate ZonedDateTime,
+    lastUpdateDate ZonedDateTime
+}
+
+entity Tag {
+	name String required maxlength(50) unique 
+}
+
+entity Category {
+	name String required maxlength(200) unique
+}
+
+entity UserInfo {
+	phone String,
+    mobilePhone String,
+    emailFlag Boolean,
+    smsFlag Boolean,
+    birthDate LocalDate,
+    gender Gender
+}
+
+entity UserStat {
+	viewCount Long,
+    reviewCount Integer,
+	rating BigDecimal
+}
+
+entity UserReview {
+	score Integer required min(0) max(10),
+    comment String,
+    date ZonedDateTime,
+    reviewer String
+}
+
+// an ignored comment
+/** not an ignored comment */
+entity Address {
+	address String required,
+	postalCode String,
+	city String required,
+	province String
+    country String
+}
+
+enum Gender {
+	MALE, FEMALE, OTHER
+}
+
+relationship OneToOne {
+	UserInfo{user} to User,
+    UserStat{user} to User,
+	UserJob{user} to User,
+    UserJob{address} to Address,
+    UserInfo{address} to Address
+}
+
+relationship ManyToOne {
+	UserReview{user} to User,
+    UserJob{category} to Category
+}
+
+relationship OneToMany {
+	UserJob{tag} to Tag
+}
+
+// Set pagination options
+// paginate JobHistory, Employee with infinite-scroll
+paginate UserJob with pagination
+
+// Use Data Transfert Objects (DTO)
+dto UserJob with mapstruct
+
+// skipClient Address
+
+// Set service options to all except few
+// service all with serviceImpl except Employee, Job
+service UserJob, UserInfo with serviceClass
+
+filter UserJob, UserInfo, UserStat, UserReview
+
+// Set an angular suffix
+// angularSuffix * with mySuffix

@@ -1,0 +1,25 @@
+{
+  "uneedApp": {
+    "userStat": {
+      "home": {
+        "title": "User Stats",
+        "createLabel": "Create a new User Stat",
+        "createOrEditLabel": "Create or edit a User Stat",
+        "notFound": "No User Stat found"
+      },
+      "created": "A new User Stat is created with identifier {{ param }}",
+      "updated": "A User Stat is updated with identifier {{ param }}",
+      "deleted": "A User Stat is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete User Stat {{ id }}?"
+      },
+      "detail": {
+        "title": "User Stat"
+      },
+      "viewCount": "View Count",
+      "reviewCount": "Review Count",
+      "rating": "Rating",
+      "user": "User"
+    }
+  }
+}

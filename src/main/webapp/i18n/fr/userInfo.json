@@ -1,0 +1,28 @@
+{
+  "uneedApp": {
+    "userInfo": {
+      "home": {
+        "title": "UserInfos",
+        "createLabel": "Créer un nouveau User Info",
+        "createOrEditLabel": "Créer ou éditer un User Info",
+        "notFound": "Aucun User Info trouvé"
+      },
+      "created": "Un nouveau User Info a été créé avec l'identifiant {{ param }}",
+      "updated": "Le User Info avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le User Info avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le User Info {{ id }} ?"
+      },
+      "detail": {
+        "title": "User Info"
+      },
+      "phone": "Phone",
+      "mobilePhone": "Mobile Phone",
+      "emailFlag": "Email Flag",
+      "smsFlag": "Sms Flag",
+      "birthDate": "Birth Date",
+      "gender": "Gender",
+      "user": "User"
+    }
+  }
+}
