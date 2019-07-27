@@ -1,13 +1,13 @@
 package com.hongz.uneed.domain;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
-import javax.persistence.*;
-
-import java.io.Serializable;
-import java.time.LocalDate;
 
 import com.hongz.uneed.domain.enumeration.Gender;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.springframework.cloud.cloudfoundry.com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.time.LocalDate;
 
 /**
  * A UserInfo.
@@ -44,6 +44,7 @@ public class UserInfo implements Serializable {
 
     @OneToOne
     @JoinColumn(unique = true)
+    @JsonIgnoreProperties("")
     private User user;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

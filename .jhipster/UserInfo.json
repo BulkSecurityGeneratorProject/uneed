@@ -33,7 +33,7 @@
             "otherEntityName": "user",
             "otherEntityRelationshipName": "userInfo",
             "relationshipName": "user",
-            "otherEntityField": "id",
+            "otherEntityField": "login",
             "ownerSide": true
         }
     ],
