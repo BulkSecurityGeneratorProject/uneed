@@ -1,0 +1,81 @@
+<div>
+    <br/>
+    <div class="alert alert-warning" *ngIf="userJobs?.length === 0">
+        <span jhiTranslate="uneedApp.userJob.home.notFound">No userJobs found</span>
+    </div>
+    <div class="table-responsive" *ngIf="userJobs?.length > 0">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <!--<th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>-->
+            <!--<th jhiSortBy="name">--><th>
+                <span jhiTranslate="uneedApp.userJob.name">Name</span></th>
+            <!--<th jhiSortBy="description">--><th>
+                <span jhiTranslate="uneedApp.userJob.description">Description</span></th>
+            <!--<th jhiSortBy="price"><span jhiTranslate="uneedApp.userJob.price">Price</span> <fa-icon [icon]="'sort'"></fa-icon></th>-->
+            <!--<th jhiSortBy="currency"><span jhiTranslate="uneedApp.userJob.currency">Currency</span> <fa-icon [icon]="'sort'"></fa-icon></th>-->
+            <!--<th jhiSortBy="imageUrl"><span jhiTranslate="uneedApp.userJob.imageUrl">Image Url</span> <fa-icon [icon]="'sort'"></fa-icon></th>-->
+            <!--<th jhiSortBy="createDate"><span jhiTranslate="uneedApp.userJob.createDate">Create Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>-->
+            <!--<th jhiSortBy="lastUpdateDate">--><th>
+                <span jhiTranslate="uneedApp.userJob.lastUpdateDate">Last Update Date</span></th>
+            <!--<th jhiSortBy="categoryName"><span jhiTranslate="uneedApp.userJob.category">Category</span> <fa-icon [icon]="'sort'"></fa-icon></th>-->
+            <!--<th jhiSortBy="userLogin">--><th>
+                <span jhiTranslate="uneedApp.userJob.user">User</span></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let userJob of userJobs ;trackBy: trackId">
+                <!--<td><a [routerLink]="['/user-job', userJob.id, 'view' ]">{{userJob.id}}</a></td>-->
+                <td>{{userJob.name}}</td>
+                <td>{{userJob.description}}</td>
+                <!--<td>{{userJob.price}}</td>-->
+                <!--<td>{{userJob.currency}}</td>-->
+                <!--<td>{{userJob.imageUrl}}</td>-->
+                <!--<td>{{userJob.createDate | date:'medium'}}</td>-->
+                <td>{{userJob.lastUpdateDate | date:'yy-MM-dd HH:mm'}}</td>
+                <td>
+                    <div *ngIf="userJob.categoryId">
+                        <a [routerLink]="['../category', userJob.categoryId , 'view' ]" >{{userJob.categoryName}}</a>
+                    </div>
+                </td>
+                <td>
+                    {{userJob.userLogin}}
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/user-job', userJob.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <!--<button type="submit"-->
+                                <!--[routerLink]="['/user-job', userJob.id, 'edit']"-->
+                                <!--class="btn btn-primary btn-sm">-->
+                            <!--<fa-icon [icon]="'pencil-alt'"></fa-icon>-->
+                            <!--<span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>-->
+                        <!--</button>-->
+                        <!--<button type="submit"-->
+                                <!--[routerLink]="['/', 'user-job', { outlets: { popup: userJob.id + '/delete'} }]"-->
+                                <!--replaceUrl="true"-->
+                                <!--queryParamsHandling="merge"-->
+                                <!--class="btn btn-danger btn-sm">-->
+                            <!--<fa-icon [icon]="'times'"></fa-icon>-->
+                            <!--<span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>-->
+                        <!--</button>-->
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div [hidden]="userJobs?.length === 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>
