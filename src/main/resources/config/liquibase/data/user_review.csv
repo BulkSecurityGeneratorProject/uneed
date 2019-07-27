@@ -1,11 +1,11 @@
-id;score;comment;date;reviewer
-1;4;Directives application Home Loan Account;2019-07-26T21:26:05;Computer Practical Fresh Pants
-2;6;alarm;2019-07-27T00:41:07;Producer
-3;9;red Chips Soap;2019-07-26T17:52:39;Albania web-readiness
-4;3;Investment Account Steel;2019-07-26T18:10:04;24/7 Common bluetooth
-5;2;Cambridgeshire Mississippi;2019-07-27T00:03:52;Credit Card Account Table Small Frozen Sausages
-6;10;cross-platform access;2019-07-26T22:50:06;Nakfa
-7;4;Rubber Buckinghamshire Games;2019-07-26T03:21:21;Digitized invoice
-8;3;Costa Rica Mayotte;2019-07-26T20:44:34;Facilitator
-9;8;Markets Chief;2019-07-26T10:49:47;National Awesome sky blue
-10;0;software scale interactive;2019-07-26T05:17:23;compelling mission-critical
+id;score;comment;date;reviewer;user_id
+1;4;Directives application Home Loan Account;2019-07-26T21:26:05;Computer Practical Fresh Pants;4
+2;6;alarm;2019-07-27T00:41:07;Producer;4
+3;9;red Chips Soap;2019-07-26T17:52:39;Albania web-readiness;4
+4;3;Investment Account Steel;2019-07-26T18:10:04;24/7 Common bluetooth;4
+5;2;Cambridgeshire Mississippi;2019-07-27T00:03:52;Credit Card Account Table Small Frozen Sausages;NULL
+6;10;cross-platform access;2019-07-26T22:50:06;Nakfa;NULL
+7;4;Rubber Buckinghamshire Games;2019-07-26T03:21:21;Digitized invoice;NULL
+8;3;Costa Rica Mayotte;2019-07-26T20:44:34;Facilitator;NULL
+9;8;Markets Chief;2019-07-26T10:49:47;National Awesome sky blue;NULL
+10;0;software scale interactive;2019-07-26T05:17:23;compelling mission-critical;NULL
