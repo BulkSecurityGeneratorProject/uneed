@@ -39,7 +39,7 @@ public class UserReview implements Serializable {
     private String reviewer;
 
     @ManyToOne
-    @JsonIgnoreProperties("userReviews")
+    @JsonIgnoreProperties("userReview")
     private User user;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

@@ -1,6 +1,7 @@
 package com.hongz.uneed.domain;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.springframework.cloud.cloudfoundry.com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 
@@ -32,6 +33,7 @@ public class UserStat implements Serializable {
 
     @OneToOne
     @JoinColumn(unique = true)
+    @JsonIgnoreProperties("UserStat")
     private User user;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

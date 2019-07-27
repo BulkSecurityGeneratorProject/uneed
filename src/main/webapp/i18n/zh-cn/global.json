@@ -10,6 +10,8 @@
         "userJob": "User Job",
         "userInfo": "User Info",
         "address": "Address",
+        "userStat": "User Stat",
+        "userReview": "User Review",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

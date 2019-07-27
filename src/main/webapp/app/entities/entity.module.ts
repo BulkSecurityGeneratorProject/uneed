@@ -15,6 +15,14 @@ import { RouterModule } from '@angular/router';
       {
         path: 'address',
         loadChildren: './address/address.module#UneedAddressModule'
+      },
+      {
+        path: 'user-stat',
+        loadChildren: './user-stat/user-stat.module#UneedUserStatModule'
+      },
+      {
+        path: 'user-review',
+        loadChildren: './user-review/user-review.module#UneedUserReviewModule'
       }
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ])

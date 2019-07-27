@@ -31,7 +31,7 @@
             "otherEntityName": "user",
             "otherEntityRelationshipName": "userReview",
             "relationshipName": "user",
-            "otherEntityField": "id"
+            "otherEntityField": "login"
         }
     ],
     "changelogDate": "20190726011101",
