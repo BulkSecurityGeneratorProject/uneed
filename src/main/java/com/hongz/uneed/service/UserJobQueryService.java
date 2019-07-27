@@ -112,6 +112,14 @@ public class UserJobQueryService extends QueryService<UserJob> {
             if (criteria.getLastUpdateDate() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getLastUpdateDate(), UserJob_.lastUpdateDate));
             }
+            if (criteria.getCategoryId() != null) {
+                specification = specification.and(buildSpecification(criteria.getCategoryId(),
+                    root -> root.join(UserJob_.category, JoinType.LEFT).get(Category_.id)));
+            }
+            if (criteria.getTagId() != null) {
+                specification = specification.and(buildSpecification(criteria.getTagId(),
+                    root -> root.join(UserJob_.tags, JoinType.LEFT).get(Tag_.id)));
+            }
             if (criteria.getUserId() != null) {
                 specification = specification.and(buildSpecification(criteria.getUserId(),
                     root -> root.join(UserJob_.user, JoinType.LEFT).get(User_.id)));

@@ -33,9 +33,21 @@
                 <dd>
                     <span>{{userJob.lastUpdateDate}}</span>
                 </dd>
+                <dt><span jhiTranslate="uneedApp.userJob.category">Category</span></dt>
+                <dd>
+                    <div *ngIf="userJob.categoryId">
+                        <a [routerLink]="['/category', userJob.categoryId, 'view']">{{userJob.categoryName}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="uneedApp.userJob.tag">Tag</span></dt>
+                <dd>
+                    <span *ngFor="let tag of userJob.tags; let last = last">
+                        <a [routerLink]="['/tag', tag?.id, 'view' ]">{{tag.name}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
                 <dt><span jhiTranslate="uneedApp.userJob.user">User</span></dt>
                 <dd>
-                    {{userJob.userId}}
+                    {{userJob.userLogin}}
                 </dd>
             </dl>
 

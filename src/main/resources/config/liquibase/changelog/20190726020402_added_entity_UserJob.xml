@@ -43,6 +43,10 @@
             <column name="last_update_date" type="datetime">
                 <constraints nullable="true" />
             </column>
+
+            <column name="category_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
             <column name="user_id" type="bigint">
                 <constraints unique="true" nullable="true" uniqueConstraintName="ux_user_job_user_id" />
             </column>
@@ -55,6 +59,17 @@
 
     <changeSet id="20190726020402-1-relations" author="jhipster">
 
+        <createTable tableName="user_job_tag">
+            <column name="tag_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_job_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="user_job_id, tag_id" tableName="user_job_tag"/>
+        
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 

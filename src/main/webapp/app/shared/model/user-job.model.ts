@@ -1,4 +1,5 @@
 import { Moment } from 'moment';
+import { ITag } from 'app/shared/model/tag.model';
 
 export interface IUserJob {
   id?: number;
@@ -9,6 +10,10 @@ export interface IUserJob {
   imageUrl?: string;
   createDate?: Moment;
   lastUpdateDate?: Moment;
+  categoryName?: string;
+  categoryId?: number;
+  tags?: ITag[];
+  userLogin?: string;
   userId?: number;
 }
 
@@ -22,6 +27,10 @@ export class UserJob implements IUserJob {
     public imageUrl?: string,
     public createDate?: Moment,
     public lastUpdateDate?: Moment,
+    public categoryName?: string,
+    public categoryId?: number,
+    public tags?: ITag[],
+    public userLogin?: string,
     public userId?: number
   ) {}
 }

@@ -42,6 +42,10 @@ public class UserJobCriteria implements Serializable, Criteria {
 
     private ZonedDateTimeFilter lastUpdateDate;
 
+    private LongFilter categoryId;
+
+    private LongFilter tagId;
+
     private LongFilter userId;
 
     public UserJobCriteria(){
@@ -56,6 +60,8 @@ public class UserJobCriteria implements Serializable, Criteria {
         this.imageUrl = other.imageUrl == null ? null : other.imageUrl.copy();
         this.createDate = other.createDate == null ? null : other.createDate.copy();
         this.lastUpdateDate = other.lastUpdateDate == null ? null : other.lastUpdateDate.copy();
+        this.categoryId = other.categoryId == null ? null : other.categoryId.copy();
+        this.tagId = other.tagId == null ? null : other.tagId.copy();
         this.userId = other.userId == null ? null : other.userId.copy();
     }
 
@@ -128,6 +134,22 @@ public class UserJobCriteria implements Serializable, Criteria {
         this.lastUpdateDate = lastUpdateDate;
     }
 
+    public LongFilter getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(LongFilter categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public LongFilter getTagId() {
+        return tagId;
+    }
+
+    public void setTagId(LongFilter tagId) {
+        this.tagId = tagId;
+    }
+
     public LongFilter getUserId() {
         return userId;
     }
@@ -155,6 +177,8 @@ public class UserJobCriteria implements Serializable, Criteria {
             Objects.equals(imageUrl, that.imageUrl) &&
             Objects.equals(createDate, that.createDate) &&
             Objects.equals(lastUpdateDate, that.lastUpdateDate) &&
+            Objects.equals(categoryId, that.categoryId) &&
+            Objects.equals(tagId, that.tagId) &&
             Objects.equals(userId, that.userId);
     }
 
@@ -169,6 +193,8 @@ public class UserJobCriteria implements Serializable, Criteria {
         imageUrl,
         createDate,
         lastUpdateDate,
+        categoryId,
+        tagId,
         userId
         );
     }
@@ -184,6 +210,8 @@ public class UserJobCriteria implements Serializable, Criteria {
                 (imageUrl != null ? "imageUrl=" + imageUrl + ", " : "") +
                 (createDate != null ? "createDate=" + createDate + ", " : "") +
                 (lastUpdateDate != null ? "lastUpdateDate=" + lastUpdateDate + ", " : "") +
+                (categoryId != null ? "categoryId=" + categoryId + ", " : "") +
+                (tagId != null ? "tagId=" + tagId + ", " : "") +
                 (userId != null ? "userId=" + userId + ", " : "") +
             "}";
     }

@@ -58,6 +58,15 @@ public class UserJobService {
             .map(userJobMapper::toDto);
     }
 
+    /**
+     * Get all the userJobs with eager load of many-to-many relationships.
+     *
+     * @return the list of entities.
+     */
+    public Page<UserJobDTO> findAllWithEagerRelationships(Pageable pageable) {
+        return userJobRepository.findAllWithEagerRelationships(pageable).map(userJobMapper::toDto);
+    }
+    
 
     /**
      * Get one userJob by id.
@@ -68,7 +77,7 @@ public class UserJobService {
     @Transactional(readOnly = true)
     public Optional<UserJobDTO> findOne(Long id) {
         log.debug("Request to get UserJob : {}", id);
-        return userJobRepository.findById(id)
+        return userJobRepository.findOneWithEagerRelationships(id)
             .map(userJobMapper::toDto);
     }
 

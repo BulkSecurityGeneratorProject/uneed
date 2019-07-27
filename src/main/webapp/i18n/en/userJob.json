@@ -23,6 +23,8 @@
       "imageUrl": "Image Url",
       "createDate": "Create Date",
       "lastUpdateDate": "Last Update Date",
+      "category": "Category",
+      "tag": "Tag",
       "user": "User"
     }
   }

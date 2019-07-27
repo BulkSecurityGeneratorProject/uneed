@@ -3,6 +3,8 @@ import java.time.ZonedDateTime;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -28,7 +30,15 @@ public class UserJobDTO implements Serializable {
     private ZonedDateTime lastUpdateDate;
 
 
+    private Long categoryId;
+
+    private String categoryName;
+
+    private Set<TagDTO> tags = new HashSet<>();
+
     private Long userId;
+
+    private String userLogin;
 
     public Long getId() {
         return id;
@@ -94,12 +104,44 @@ public class UserJobDTO implements Serializable {
         this.lastUpdateDate = lastUpdateDate;
     }
 
+    public Long getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    public Set<TagDTO> getTags() {
+        return tags;
+    }
+
+    public void setTags(Set<TagDTO> tags) {
+        this.tags = tags;
+    }
+
     public Long getUserId() {
         return userId;
     }
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public String getUserLogin() {
+        return userLogin;
+    }
+
+    public void setUserLogin(String userLogin) {
+        this.userLogin = userLogin;
     }
 
     @Override
@@ -134,7 +176,10 @@ public class UserJobDTO implements Serializable {
             ", imageUrl='" + getImageUrl() + "'" +
             ", createDate='" + getCreateDate() + "'" +
             ", lastUpdateDate='" + getLastUpdateDate() + "'" +
+            ", category=" + getCategoryId() +
+            ", category='" + getCategoryName() + "'" +
             ", user=" + getUserId() +
+            ", user='" + getUserLogin() + "'" +
             "}";
     }
 }

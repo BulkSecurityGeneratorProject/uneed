@@ -25,7 +25,8 @@
             <th jhiSortBy="imageUrl"><span jhiTranslate="uneedApp.userJob.imageUrl">Image Url</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="createDate"><span jhiTranslate="uneedApp.userJob.createDate">Create Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="lastUpdateDate"><span jhiTranslate="uneedApp.userJob.lastUpdateDate">Last Update Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="userId"><span jhiTranslate="uneedApp.userJob.user">User</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="categoryName"><span jhiTranslate="uneedApp.userJob.category">Category</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="userLogin"><span jhiTranslate="uneedApp.userJob.user">User</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -40,7 +41,12 @@
                 <td>{{userJob.createDate | date:'medium'}}</td>
                 <td>{{userJob.lastUpdateDate | date:'medium'}}</td>
                 <td>
-                    {{userJob.userId}}
+                    <div *ngIf="userJob.categoryId">
+                        <a [routerLink]="['../category', userJob.categoryId , 'view' ]" >{{userJob.categoryName}}</a>
+                    </div>
+                </td>
+                <td>
+                    {{userJob.userLogin}}
                 </td>
                 <td class="text-right">
                     <div class="btn-group">

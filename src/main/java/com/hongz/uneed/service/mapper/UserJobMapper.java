@@ -8,12 +8,17 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity {@link UserJob} and its DTO {@link UserJobDTO}.
  */
-@Mapper(componentModel = "spring", uses = {UserMapper.class})
+@Mapper(componentModel = "spring", uses = {CategoryMapper.class, TagMapper.class, UserMapper.class})
 public interface UserJobMapper extends EntityMapper<UserJobDTO, UserJob> {
 
+    @Mapping(source = "category.id", target = "categoryId")
+    @Mapping(source = "category.name", target = "categoryName")
     @Mapping(source = "user.id", target = "userId")
+    @Mapping(source = "user.login", target = "userLogin")
     UserJobDTO toDto(UserJob userJob);
 
+    @Mapping(source = "categoryId", target = "category")
+    @Mapping(target = "removeTag", ignore = true)
     @Mapping(source = "userId", target = "user")
     UserJob toEntity(UserJobDTO userJobDTO);
 

@@ -1,4 +1,5 @@
 package com.hongz.uneed.domain;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -8,6 +9,8 @@ import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A UserJob.
@@ -45,8 +48,19 @@ public class UserJob implements Serializable {
     @Column(name = "last_update_date")
     private ZonedDateTime lastUpdateDate;
 
+    @ManyToOne
+    private Category category;
+
+    @ManyToMany
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JoinTable(name = "user_job_tag",
+               joinColumns = @JoinColumn(name = "user_job_id", referencedColumnName = "id"),
+               inverseJoinColumns = @JoinColumn(name = "tag_id", referencedColumnName = "id"))
+    private Set<Tag> tags = new HashSet<>();
+
     @OneToOne
     @JoinColumn(unique = true)
+    @JsonIgnoreProperties("userJobs")
     private User user;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
@@ -147,6 +161,42 @@ public class UserJob implements Serializable {
 
     public void setLastUpdateDate(ZonedDateTime lastUpdateDate) {
         this.lastUpdateDate = lastUpdateDate;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public UserJob category(Category category) {
+        this.category = category;
+        return this;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Set<Tag> getTags() {
+        return tags;
+    }
+
+    public UserJob tags(Set<Tag> tags) {
+        this.tags = tags;
+        return this;
+    }
+
+    public UserJob addTag(Tag tag) {
+        this.tags.add(tag);
+        return this;
+    }
+
+    public UserJob removeTag(Tag tag) {
+        this.tags.remove(tag);
+        return this;
+    }
+
+    public void setTags(Set<Tag> tags) {
+        this.tags = tags;
     }
 
     public User getUser() {

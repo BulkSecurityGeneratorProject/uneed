@@ -8,6 +8,24 @@
     -->
     <changeSet id="20190726020402-2" author="jhipster">
         
+        <addForeignKeyConstraint baseColumnNames="category_id"
+                                 baseTableName="user_job"
+                                 constraintName="fk_user_job_category_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="category"/>
+
+        <addForeignKeyConstraint baseColumnNames="user_job_id"
+                                 baseTableName="user_job_tag"
+                                 constraintName="fk_user_job_tag_user_job_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="user_job"/>
+
+        <addForeignKeyConstraint baseColumnNames="tag_id"
+                                 baseTableName="user_job_tag"
+                                 constraintName="fk_user_job_tag_tag_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tag"/>
+        
         <addForeignKeyConstraint baseColumnNames="user_id"
                                  baseTableName="user_job"
                                  constraintName="fk_user_job_user_id"

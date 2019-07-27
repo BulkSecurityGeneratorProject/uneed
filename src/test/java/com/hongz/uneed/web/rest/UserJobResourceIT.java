@@ -2,6 +2,8 @@ package com.hongz.uneed.web.rest;
 
 import com.hongz.uneed.UneedApp;
 import com.hongz.uneed.domain.UserJob;
+import com.hongz.uneed.domain.Category;
+import com.hongz.uneed.domain.Tag;
 import com.hongz.uneed.domain.User;
 import com.hongz.uneed.repository.UserJobRepository;
 import com.hongz.uneed.service.UserJobService;
@@ -13,9 +15,12 @@ import com.hongz.uneed.service.UserJobQueryService;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -30,12 +35,14 @@ import java.time.Instant;
 import java.time.ZonedDateTime;
 import java.time.ZoneOffset;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.hongz.uneed.web.rest.TestUtil.sameInstant;
 import static com.hongz.uneed.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -69,8 +76,14 @@ public class UserJobResourceIT {
     @Autowired
     private UserJobRepository userJobRepository;
 
+    @Mock
+    private UserJobRepository userJobRepositoryMock;
+
     @Autowired
     private UserJobMapper userJobMapper;
+
+    @Mock
+    private UserJobService userJobServiceMock;
 
     @Autowired
     private UserJobService userJobService;
@@ -234,6 +247,39 @@ public class UserJobResourceIT {
             .andExpect(jsonPath("$.[*].lastUpdateDate").value(hasItem(sameInstant(DEFAULT_LAST_UPDATE_DATE))));
     }
     
+    @SuppressWarnings({"unchecked"})
+    public void getAllUserJobsWithEagerRelationshipsIsEnabled() throws Exception {
+        UserJobResource userJobResource = new UserJobResource(userJobServiceMock, userJobQueryService);
+        when(userJobServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+
+        MockMvc restUserJobMockMvc = MockMvcBuilders.standaloneSetup(userJobResource)
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter).build();
+
+        restUserJobMockMvc.perform(get("/api/user-jobs?eagerload=true"))
+        .andExpect(status().isOk());
+
+        verify(userJobServiceMock, times(1)).findAllWithEagerRelationships(any());
+    }
+
+    @SuppressWarnings({"unchecked"})
+    public void getAllUserJobsWithEagerRelationshipsIsNotEnabled() throws Exception {
+        UserJobResource userJobResource = new UserJobResource(userJobServiceMock, userJobQueryService);
+            when(userJobServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+            MockMvc restUserJobMockMvc = MockMvcBuilders.standaloneSetup(userJobResource)
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter).build();
+
+        restUserJobMockMvc.perform(get("/api/user-jobs?eagerload=true"))
+        .andExpect(status().isOk());
+
+            verify(userJobServiceMock, times(1)).findAllWithEagerRelationships(any());
+    }
+
     @Test
     @Transactional
     public void getUserJob() throws Exception {
@@ -578,6 +624,44 @@ public class UserJobResourceIT {
 
         // Get all the userJobList where lastUpdateDate less than or equals to UPDATED_LAST_UPDATE_DATE
         defaultUserJobShouldBeFound("lastUpdateDate.lessThan=" + UPDATED_LAST_UPDATE_DATE);
+    }
+
+
+    @Test
+    @Transactional
+    public void getAllUserJobsByCategoryIsEqualToSomething() throws Exception {
+        // Initialize the database
+        Category category = CategoryResourceIT.createEntity(em);
+        em.persist(category);
+        em.flush();
+        userJob.setCategory(category);
+        userJobRepository.saveAndFlush(userJob);
+        Long categoryId = category.getId();
+
+        // Get all the userJobList where category equals to categoryId
+        defaultUserJobShouldBeFound("categoryId.equals=" + categoryId);
+
+        // Get all the userJobList where category equals to categoryId + 1
+        defaultUserJobShouldNotBeFound("categoryId.equals=" + (categoryId + 1));
+    }
+
+
+    @Test
+    @Transactional
+    public void getAllUserJobsByTagIsEqualToSomething() throws Exception {
+        // Initialize the database
+        Tag tag = TagResourceIT.createEntity(em);
+        em.persist(tag);
+        em.flush();
+        userJob.addTag(tag);
+        userJobRepository.saveAndFlush(userJob);
+        Long tagId = tag.getId();
+
+        // Get all the userJobList where tag equals to tagId
+        defaultUserJobShouldBeFound("tagId.equals=" + tagId);
+
+        // Get all the userJobList where tag equals to tagId + 1
+        defaultUserJobShouldNotBeFound("tagId.equals=" + (tagId + 1));
     }
 
 

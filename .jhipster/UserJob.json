@@ -35,11 +35,27 @@
     ],
     "relationships": [
         {
+            "relationshipType": "many-to-one",
+            "otherEntityRelationshipName": "userJob",
+            "relationshipName": "category",
+            "otherEntityName": "category",
+            "otherEntityField": "name",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "userJob",
+            "relationshipName": "tag",
+            "otherEntityName": "tag",
+            "otherEntityField": "name",
+            "ownerSide": true
+        },
+        {
             "relationshipType": "one-to-one",
             "otherEntityName": "user",
             "otherEntityRelationshipName": "userJob",
             "relationshipName": "user",
-            "otherEntityField": "id",
+            "otherEntityField": "login",
             "ownerSide": true
         }
     ],
