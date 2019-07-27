@@ -14,10 +14,11 @@
     ],
     "relationships": [
         {
-            "relationshipName": "userJob",
-            "otherEntityName": "userJob",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id"
+          "relationshipType": "many-to-many",
+          "relationshipName": "userJob",
+          "otherEntityName": "userJob",
+          "ownerSide": false,
+          "otherEntityRelationshipName": "tag"
         }
     ],
     "changelogDate": "20190726011057",
