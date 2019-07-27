@@ -1,11 +1,10 @@
 package com.hongz.uneed.domain;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
-
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 /**
@@ -23,13 +22,9 @@ public class Tag implements Serializable {
     private Long id;
 
     @NotNull
-    @Size(max = 50)
+    @Size(min = 3, max = 50)
     @Column(name = "name", length = 50, nullable = false, unique = true)
     private String name;
-
-    @ManyToOne
-    @JsonIgnoreProperties("tags")
-    private UserJob userJob;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -52,20 +47,6 @@ public class Tag implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
-
-    public UserJob getUserJob() {
-        return userJob;
-    }
-
-    public Tag userJob(UserJob userJob) {
-        this.userJob = userJob;
-        return this;
-    }
-
-    public void setUserJob(UserJob userJob) {
-        this.userJob = userJob;
-    }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
     public boolean equals(Object o) {

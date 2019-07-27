@@ -1,11 +1,14 @@
 package com.hongz.uneed.service.dto;
-import java.time.ZonedDateTime;
-import javax.validation.constraints.*;
+
+import com.hongz.uneed.domain.Tag;
+
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.ZonedDateTime;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * A DTO for the {@link com.hongz.uneed.domain.UserJob} entity.
@@ -34,7 +37,7 @@ public class UserJobDTO implements Serializable {
 
     private String categoryName;
 
-    private Set<TagDTO> tags = new HashSet<>();
+    private Set<Tag> tags = new HashSet<>();
 
     private Long userId;
 
@@ -120,11 +123,11 @@ public class UserJobDTO implements Serializable {
         this.categoryName = categoryName;
     }
 
-    public Set<TagDTO> getTags() {
+    public Set<Tag> getTags() {
         return tags;
     }
 
-    public void setTags(Set<TagDTO> tags) {
+    public void setTags(Set<Tag> tags) {
         this.tags = tags;
     }
 
