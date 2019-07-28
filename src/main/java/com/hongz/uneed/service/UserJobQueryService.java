@@ -1,9 +1,11 @@
 package com.hongz.uneed.service;
 
-import java.util.List;
-
-import javax.persistence.criteria.JoinType;
-
+import com.hongz.uneed.domain.*;
+import com.hongz.uneed.repository.UserJobRepository;
+import com.hongz.uneed.service.dto.UserJobCriteria;
+import com.hongz.uneed.service.dto.UserJobDTO;
+import com.hongz.uneed.service.mapper.UserJobMapper;
+import io.github.jhipster.service.QueryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -12,14 +14,8 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import io.github.jhipster.service.QueryService;
-
-import com.hongz.uneed.domain.UserJob;
-import com.hongz.uneed.domain.*; // for static metamodels
-import com.hongz.uneed.repository.UserJobRepository;
-import com.hongz.uneed.service.dto.UserJobCriteria;
-import com.hongz.uneed.service.dto.UserJobDTO;
-import com.hongz.uneed.service.mapper.UserJobMapper;
+import javax.persistence.criteria.JoinType;
+import java.util.List;
 
 /**
  * Service for executing complex queries for {@link UserJob} entities in the database.
@@ -92,10 +88,10 @@ public class UserJobQueryService extends QueryService<UserJob> {
                 specification = specification.and(buildSpecification(criteria.getId(), UserJob_.id));
             }
             if (criteria.getName() != null) {
-                specification = specification.and(buildStringSpecification(criteria.getName(), UserJob_.name));
+                specification = specification.or(buildStringSpecification(criteria.getName(), UserJob_.name));
             }
             if (criteria.getDescription() != null) {
-                specification = specification.and(buildStringSpecification(criteria.getDescription(), UserJob_.description));
+                specification = specification.or(buildStringSpecification(criteria.getDescription(), UserJob_.description));
             }
             if (criteria.getPrice() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getPrice(), UserJob_.price));
