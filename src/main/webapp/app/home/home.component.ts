@@ -3,6 +3,7 @@ import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager } from 'ng-jhipster';
 
 import { LoginModalService, AccountService, Account } from 'app/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'jhi-home',
@@ -12,6 +13,8 @@ import { LoginModalService, AccountService, Account } from 'app/core';
 export class HomeComponent implements OnInit {
   account: Account;
   modalRef: NgbModalRef;
+
+  criteria = new BehaviorSubject('');
 
   constructor(
     private accountService: AccountService,
@@ -40,5 +43,9 @@ export class HomeComponent implements OnInit {
 
   login() {
     this.modalRef = this.loginModalService.open();
+  }
+
+  search(event) {
+    this.criteria.next(event);
   }
 }

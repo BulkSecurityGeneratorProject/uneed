@@ -4,12 +4,13 @@ import { RouterModule } from '@angular/router';
 import { UneedSharedModule } from 'app/shared';
 import { HOME_ROUTE, HomeComponent } from './';
 import { HomeService } from 'app/home/home.service';
-import { EntryComponent } from 'app/home/component/entry.component';
+import { EntryComponent } from 'app/home/entry/entry.component';
+import { SearchComponent } from 'app/home/search/search.component';
 
 @NgModule({
   imports: [UneedSharedModule, RouterModule.forChild([HOME_ROUTE])],
   providers: [HomeService],
-  declarations: [HomeComponent, EntryComponent],
+  declarations: [HomeComponent, EntryComponent, SearchComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class UneedHomeModule {}

@@ -13,7 +13,7 @@ type EntityArrayResponseType = HttpResponse<IUserJob[]>;
 
 @Injectable({ providedIn: 'root' })
 export class HomeService {
-  public resourceUrl = SERVER_API_URL + 'api/user-jobs';
+  public resourceUrl = SERVER_API_URL + 'api/pub/user-jobs';
 
   constructor(protected http: HttpClient) {}
 
@@ -28,10 +28,6 @@ export class HomeService {
     return this.http
       .get<IUserJob[]>(this.resourceUrl, { params: options, observe: 'response' })
       .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
-  }
-
-  delete(id: number): Observable<HttpResponse<any>> {
-    return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
 
   protected convertDateFromServer(res: EntityResponseType): EntityResponseType {

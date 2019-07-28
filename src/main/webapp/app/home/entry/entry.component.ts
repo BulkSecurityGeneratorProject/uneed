@@ -1,13 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
-import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
+import { JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 
 import { IUserJob } from 'app/shared/model/user-job.model';
-import { AccountService } from 'app/core';
-
 import { ITEMS_PER_PAGE } from 'app/shared';
 import { HomeService } from 'app/home/home.service';
 
@@ -16,11 +12,10 @@ import { HomeService } from 'app/home/home.service';
   templateUrl: './entry.component.html'
 })
 export class EntryComponent implements OnInit, OnDestroy {
-  currentAccount: any;
+  @Input() criteria;
   userJobs: IUserJob[];
   error: any;
   success: any;
-  eventSubscriber: Subscription;
   routeData: any;
   links: any;
   totalItems: any;
@@ -34,10 +29,8 @@ export class EntryComponent implements OnInit, OnDestroy {
     protected homeService: HomeService,
     protected parseLinks: JhiParseLinks,
     protected jhiAlertService: JhiAlertService,
-    protected accountService: AccountService,
     protected activatedRoute: ActivatedRoute,
-    protected router: Router,
-    protected eventManager: JhiEventManager
+    protected router: Router
   ) {
     this.itemsPerPage = ITEMS_PER_PAGE;
     this.routeData = this.activatedRoute.data.subscribe(data => {
@@ -46,6 +39,26 @@ export class EntryComponent implements OnInit, OnDestroy {
       this.reverse = data.pagingParams.ascending;
       this.predicate = data.pagingParams.predicate;
     });
+  }
+
+  ngOnInit() {
+    this.criteria.subscribe(entry => this.query(entry));
+  }
+
+  query(entry) {
+    const expected = {
+      page: this.page - 1,
+      size: this.itemsPerPage,
+      sort: this.sort(),
+      'name.contains': entry,
+      'description.contains': entry
+    };
+    this.homeService
+      .query(expected)
+      .subscribe(
+        (res: HttpResponse<IUserJob[]>) => this.paginateUserJobs(res.body, res.headers),
+        (res: HttpErrorResponse) => this.onError(res.message)
+      );
   }
 
   loadAll() {
@@ -91,24 +104,10 @@ export class EntryComponent implements OnInit, OnDestroy {
     this.loadAll();
   }
 
-  ngOnInit() {
-    this.loadAll();
-    this.accountService.identity().then(account => {
-      this.currentAccount = account;
-    });
-    this.registerChangeInUserJobs();
-  }
-
-  ngOnDestroy() {
-    this.eventManager.destroy(this.eventSubscriber);
-  }
+  ngOnDestroy() {}
 
   trackId(index: number, item: IUserJob) {
     return item.id;
-  }
-
-  registerChangeInUserJobs() {
-    this.eventSubscriber = this.eventManager.subscribe('userJobListModification', response => this.loadAll());
   }
 
   sort() {
