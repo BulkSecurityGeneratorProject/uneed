@@ -2,29 +2,29 @@
     <a class="navbar-brand logo" routerLink="/" (click)="collapseNavbar()">
         <!--<span class="logo-img"></span>-->
         <span class="navbar-title">
-            <span class="navbar-u">U.NEED</span>
+            <span class="navbar-u text-info">U.NEED</span>
             <!--<span class="navbar-need">need</span>-->
         </span>
         <span class="navbar-version">Find service you need!</span>
     </a>
     <a class="navbar-toggler d-lg-none" href="javascript:void(0);" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleNavbar()">
-        <fa-icon icon="bars"></fa-icon>
+        <fa-icon icon="bars" size="lg"></fa-icon>
     </a>
     <div class="navbar-collapse collapse" id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed" [ngSwitch]="isAuthenticated()">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link margin-top-10" routerLink="/" (click)="collapseNavbar()">
                     <span>
-                        <fa-icon icon="home"></fa-icon>
+                        <fa-icon class="text-info" icon="home" size="lg"></fa-icon>
                         <!--<span jhiTranslate="global.menu.home">Home</span>-->
                     </span>
                 </a>
             </li>
             <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
-            <li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu">
+            <li *jhiHasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link dropdown-toggle margin-top-10" ngbDropdownToggle href="javascript:void(0);" id="entity-menu">
                     <span>
-                        <fa-icon icon="th-list"></fa-icon>
+                        <fa-icon class="text-info" icon="th-list" size="lg"></fa-icon>
                         <span jhiTranslate="global.menu.entities.main">
                             Entities
                         </span>
@@ -65,9 +65,9 @@
                 </ul>
             </li>
             <li *jhiHasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="admin-menu">
+                <a class="nav-link dropdown-toggle margin-top-10" ngbDropdownToggle href="javascript:void(0);" id="admin-menu">
                     <span>
-                        <fa-icon icon="user-plus"></fa-icon>
+                        <fa-icon class="text-info" icon="user-plus" size="lg"></fa-icon>
                         <span jhiTranslate="global.menu.admin.main">Administration</span>
                     </span>
                 </a>
@@ -126,8 +126,8 @@
             <li ngbDropdown class="nav-item dropdown pointer" *ngIf="languages && languages.length > 1">
                 <a class="nav-link dropdown-toggle margin-top-10" ngbDropdownToggle href="javascript:void(0);" id="languagesnavBarDropdown">
                     <span>
-                        <fa-icon icon="flag"></fa-icon>
-                        <span style="text-transform: uppercase">{{lanKey}}</span>
+                        <fa-icon class="text-info" icon="flag" size="lg"></fa-icon>
+                        <span style="text-transform: uppercase">{{lanKey?lanKey : 'EN'}}</span>
                     </span>
                 </a>
                 <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="languagesnavBarDropdown">
@@ -136,49 +136,41 @@
                     </li>
                 </ul>
             </li>
-
-            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <li *ngSwitchCase="false" class="nav-item pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link" (click)="login();collapseNavbar()" id="nav-login" >
                     <!--<fa-icon icon="sign-in-alt" fixedWidth="true"></fa-icon>-->
                     <button class="btn btn-outline-info" jhiTranslate="global.menu.account.login">Sign in</button>
                 </a>
             </li>
-            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <li *ngSwitchCase="false" class="nav-item pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link" routerLink="register" routerLinkActive="active" (click)="collapseNavbar()">
                     <!--<fa-icon icon="user-plus" fixedWidth="true"></fa-icon>-->
                     <button class="btn btn-info" jhiTranslate="global.menu.account.register">Register</button>
                 </a>
             </li>
-
-            <li *jhiHasAnyAuthority="'ROLE_USER'" ngbDropdown class="nav-item dropdown pointer" placement="bottom-right" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="account-menu">
+            <li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer" placement="left-bottom" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link dropdown-toggle margin-top-10" ngbDropdownToggle href="javascript:void(0);" id="account-menu">
                   <span *ngIf="!getImageUrl()">
-                    <fa-icon icon="user"></fa-icon>
-                    <span jhiTranslate="global.menu.account.main">
-                      Account
-                    </span>
+                    <fa-icon class="text-info" icon="user" size="lg"></fa-icon>
+                    <!--<span jhiTranslate="global.menu.account.main">-->
+                      <!--Account-->
+                    <!--</span>-->
                   </span>
                   <span *ngIf="getImageUrl()">
                       <img [src]="getImageUrl()" class="profile-image rounded-circle" alt="Avatar">
                   </span>
                 </a>
                 <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="account-menu">
-                    <li *ngSwitchCase="true">
+                    <li>
                         <a class="dropdown-item" routerLink="settings" routerLinkActive="active" (click)="collapseNavbar()">
                             <fa-icon icon="wrench" fixedWidth="true"></fa-icon>
                             <span jhiTranslate="global.menu.account.settings">Settings</span>
                         </a>
                     </li>
-                    <li *ngSwitchCase="true">
+                    <li>
                         <a class="dropdown-item" routerLink="password" routerLinkActive="active" (click)="collapseNavbar()">
                             <fa-icon icon="lock" fixedWidth="true"></fa-icon>
                             <span jhiTranslate="global.menu.account.password">Password</span>
-                        </a>
-                    </li>
-                    <li *ngSwitchCase="true">
-                        <a class="dropdown-item" (click)="logout()" id="logout">
-                            <fa-icon icon="sign-out-alt" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.account.logout">Sign out</span>
                         </a>
                     </li>
                     <!--<li *ngSwitchCase="false">-->
@@ -194,6 +186,12 @@
                         <!--</a>-->
                     <!--</li>-->
                 </ul>
+            </li>
+            <li *ngSwitchCase="true" class="nav-item pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link margin-top-10" (click)="logout()" id="logout">
+                    <fa-icon class="text-info" icon="sign-out-alt" fixedWidth="true" size="lg"></fa-icon>
+                    <!--<span jhiTranslate="global.menu.account.logout">Sign out</span>-->
+                </a>
             </li>
         </ul>
     </div>
