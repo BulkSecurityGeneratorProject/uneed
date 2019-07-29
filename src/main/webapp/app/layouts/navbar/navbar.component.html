@@ -1,6 +1,11 @@
-<nav class="navbar navbar-primary navbar-expand-md bg-info">
+<nav class="navbar navbar-light navbar-expand-md bg-light">
     <a class="navbar-brand logo" routerLink="/" (click)="collapseNavbar()">
-        <span class="navbar-title">U.Need</span> <span class="navbar-version"></span>
+        <!--<span class="logo-img"></span>-->
+        <span class="navbar-title">
+            <span class="navbar-u">U.NEED</span>
+            <!--<span class="navbar-need">need</span>-->
+        </span>
+        <span class="navbar-version">Find services you need!</span>
     </a>
     <a class="navbar-toggler d-lg-none" href="javascript:void(0);" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleNavbar()">
         <fa-icon icon="bars"></fa-icon>
@@ -11,7 +16,7 @@
                 <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
                     <span>
                         <fa-icon icon="home"></fa-icon>
-                        <span jhiTranslate="global.menu.home">Home</span>
+                        <!--<span jhiTranslate="global.menu.home">Home</span>-->
                     </span>
                 </a>
             </li>
