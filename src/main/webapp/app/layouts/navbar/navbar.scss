@@ -21,7 +21,7 @@ Navbar
   .dropdown-item.active,
   .dropdown-item.active:focus,
   .dropdown-item.active:hover {
-    background-color: $dark;
+    background-color: $info;
   }
 
   ul.navbar-nav {
@@ -36,7 +36,7 @@ Navbar
 
   .navbar-toggler {
     &:hover {
-      color: $navbar-dark-hover-color;
+      color: $navbar-light-hover-color;
     }
   }
 }
@@ -60,4 +60,8 @@ Logo styles
 
 .navbar-need {
   font-family: 'Brush Script MT';
+}
+
+.margin-top-10 {
+  margin-top: 10px;
 }

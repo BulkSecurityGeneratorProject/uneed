@@ -13,7 +13,7 @@
     <div class="navbar-collapse collapse" id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed" [ngSwitch]="isAuthenticated()">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
+                <a class="nav-link margin-top-10" routerLink="/" (click)="collapseNavbar()">
                     <span>
                         <fa-icon icon="home"></fa-icon>
                         <!--<span jhiTranslate="global.menu.home">Home</span>-->
@@ -124,10 +124,10 @@
                 </ul>
             </li>
             <li ngbDropdown class="nav-item dropdown pointer" *ngIf="languages && languages.length > 1">
-                <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="languagesnavBarDropdown">
+                <a class="nav-link dropdown-toggle margin-top-10" ngbDropdownToggle href="javascript:void(0);" id="languagesnavBarDropdown">
                     <span>
                         <fa-icon icon="flag"></fa-icon>
-                        <span jhiTranslate="global.menu.language">Language</span>
+                        <span style="text-transform: uppercase">{{lanKey}}</span>
                     </span>
                 </a>
                 <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="languagesnavBarDropdown">
@@ -136,7 +136,21 @@
                     </li>
                 </ul>
             </li>
-            <li ngbDropdown class="nav-item dropdown pointer" placement="bottom-right" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+
+            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link" (click)="login();collapseNavbar()" id="nav-login" >
+                    <!--<fa-icon icon="sign-in-alt" fixedWidth="true"></fa-icon>-->
+                    <button class="btn btn-outline-info" jhiTranslate="global.menu.account.login">Sign in</button>
+                </a>
+            </li>
+            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link" routerLink="register" routerLinkActive="active" (click)="collapseNavbar()">
+                    <!--<fa-icon icon="user-plus" fixedWidth="true"></fa-icon>-->
+                    <button class="btn btn-info" jhiTranslate="global.menu.account.register">Register</button>
+                </a>
+            </li>
+
+            <li *jhiHasAnyAuthority="'ROLE_USER'" ngbDropdown class="nav-item dropdown pointer" placement="bottom-right" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="account-menu">
                   <span *ngIf="!getImageUrl()">
                     <fa-icon icon="user"></fa-icon>
@@ -167,18 +181,18 @@
                             <span jhiTranslate="global.menu.account.logout">Sign out</span>
                         </a>
                     </li>
-                    <li *ngSwitchCase="false">
-                        <a class="dropdown-item" (click)="login()" id="login">
-                            <fa-icon icon="sign-in-alt" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.account.login">Sign in</span>
-                        </a>
-                    </li>
-                    <li *ngSwitchCase="false">
-                        <a class="dropdown-item" routerLink="register" routerLinkActive="active" (click)="collapseNavbar()">
-                            <fa-icon icon="user-plus" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.account.register">Register</span>
-                        </a>
-                    </li>
+                    <!--<li *ngSwitchCase="false">-->
+                        <!--<a class="dropdown-item" (click)="login()" id="login">-->
+                            <!--<fa-icon icon="sign-in-alt" fixedWidth="true"></fa-icon>-->
+                            <!--<span jhiTranslate="global.menu.account.login">Sign in</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li *ngSwitchCase="false">-->
+                        <!--<a class="dropdown-item" routerLink="register" routerLinkActive="active" (click)="collapseNavbar()">-->
+                            <!--<fa-icon icon="user-plus" fixedWidth="true"></fa-icon>-->
+                            <!--<span jhiTranslate="global.menu.account.register">Register</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
                 </ul>
             </li>
         </ul>

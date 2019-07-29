@@ -20,6 +20,7 @@ export class NavbarComponent implements OnInit {
   swaggerEnabled: boolean;
   modalRef: NgbModalRef;
   version: string;
+  lanKey: string;
 
   constructor(
     private loginService: LoginService,
@@ -36,6 +37,7 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.lanKey = this.sessionStorage.retrieve('locale');
     this.languageHelper.getAll().then(languages => {
       this.languages = languages;
     });
@@ -47,6 +49,7 @@ export class NavbarComponent implements OnInit {
   }
 
   changeLanguage(languageKey: string) {
+    this.lanKey = languageKey;
     this.sessionStorage.store('locale', languageKey);
     this.languageService.changeLanguage(languageKey);
   }
