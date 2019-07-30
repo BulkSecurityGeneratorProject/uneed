@@ -1,11 +1,10 @@
 package com.hongz.uneed.web.rest;
 
-import com.hongz.uneed.service.UserJobService;
-import com.hongz.uneed.web.rest.errors.BadRequestAlertException;
-import com.hongz.uneed.service.dto.UserJobDTO;
-import com.hongz.uneed.service.dto.UserJobCriteria;
 import com.hongz.uneed.service.UserJobQueryService;
-
+import com.hongz.uneed.service.UserJobService;
+import com.hongz.uneed.service.dto.UserJobCriteria;
+import com.hongz.uneed.service.dto.UserJobDTO;
+import com.hongz.uneed.web.rest.errors.BadRequestAlertException;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -15,16 +14,14 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.util.MultiValueMap;
-import org.springframework.web.util.UriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -89,6 +86,17 @@ public class UserJobResource {
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, userJobDTO.getId().toString()))
             .body(result);
+    }
+
+    /**
+     * {@code GET  /user-jobs/current} : get userJobs by current user.
+     *
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of userJobs in body.
+     */
+    @GetMapping("/user-jobs/current")
+    public ResponseEntity<List<UserJobDTO>> getCurrentUserJobs() {
+        log.debug("REST request to get UserJobs by currency user");
+        return ResponseEntity.ok().body(userJobService.findByCurrentUser());
     }
 
     /**
