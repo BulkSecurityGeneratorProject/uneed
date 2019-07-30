@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { IUserInfo } from 'app/shared/model/user-info.model';
 import { IUserJob } from 'app/shared/model/user-job.model';
 import { DashboardService } from './dashboard.service';
-import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { JhiAlertService } from 'ng-jhipster';
 
 @Component({
@@ -17,20 +16,9 @@ export class DashboardComponent implements OnInit {
 
   constructor(protected dashboardService: DashboardService, protected jhiAlertService: JhiAlertService) {}
 
-  ngOnInit() {
-    this.dashboardService
-      .currentJob()
-      .subscribe((res: HttpResponse<IUserJob[]>) => this.currentJob(res.body), (res: HttpErrorResponse) => this.onError(res.message));
-  }
+  ngOnInit() {}
 
   protected onError(errorMessage: string) {
     this.jhiAlertService.error(errorMessage, null, null);
-  }
-
-  private currentJob(data: IUserJob[]) {
-    if (data.length > 0) {
-      this.userJob = data[0];
-      console.log(this.userJob);
-    }
   }
 }
