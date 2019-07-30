@@ -91,12 +91,12 @@ public class UserJobResource {
     /**
      * {@code GET  /user-jobs/current} : get userJobs by current user.
      *
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of userJobs in body.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the userJobDTO, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/user-jobs/current")
-    public ResponseEntity<List<UserJobDTO>> getCurrentUserJobs() {
+    public ResponseEntity<UserJobDTO> getCurrentUserJobs() {
         log.debug("REST request to get UserJobs by currency user");
-        return ResponseEntity.ok().body(userJobService.findByCurrentUser());
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable( userJobService.findByCurrentUser()));
     }
 
     /**

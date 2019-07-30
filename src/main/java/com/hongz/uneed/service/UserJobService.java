@@ -49,15 +49,16 @@ public class UserJobService {
     /**
      * Find userJobs by current user
      *
-     * @return the list of entities.
+     * @return the entity.
      */
     @Transactional(readOnly = true)
-    public List<UserJobDTO> findByCurrentUser() {
+    public UserJobDTO findByCurrentUser() {
         log.debug("Find UserJobs by current user");
-        return userJobRepository.findByUserIsCurrentUser()
+        List<UserJobDTO> list = userJobRepository.findByUserIsCurrentUser()
             .stream()
             .map(userJobMapper::toDto)
             .collect(Collectors.toList());
+        return list.size() > 0 ? list.get(0) : null;
     }
 
     /**
