@@ -11,9 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
  * Service Implementation for managing {@link UserJob}.
@@ -44,21 +42,6 @@ public class UserJobService {
         UserJob userJob = userJobMapper.toEntity(userJobDTO);
         userJob = userJobRepository.save(userJob);
         return userJobMapper.toDto(userJob);
-    }
-
-    /**
-     * Find userJobs by current user
-     *
-     * @return the entity.
-     */
-    @Transactional(readOnly = true)
-    public UserJobDTO findByCurrentUser() {
-        log.debug("Find UserJobs by current user");
-        List<UserJobDTO> list = userJobRepository.findByUserIsCurrentUser()
-            .stream()
-            .map(userJobMapper::toDto)
-            .collect(Collectors.toList());
-        return list.size() > 0 ? list.get(0) : null;
     }
 
     /**

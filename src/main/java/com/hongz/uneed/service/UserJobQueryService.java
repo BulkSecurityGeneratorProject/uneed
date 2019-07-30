@@ -2,6 +2,8 @@ package com.hongz.uneed.service;
 
 import com.hongz.uneed.domain.*;
 import com.hongz.uneed.repository.UserJobRepository;
+import com.hongz.uneed.security.AuthoritiesConstants;
+import com.hongz.uneed.security.SecurityUtils;
 import com.hongz.uneed.service.dto.UserJobCriteria;
 import com.hongz.uneed.service.dto.UserJobDTO;
 import com.hongz.uneed.service.mapper.UserJobMapper;
@@ -59,9 +61,15 @@ public class UserJobQueryService extends QueryService<UserJob> {
     @Transactional(readOnly = true)
     public Page<UserJobDTO> findByCriteria(UserJobCriteria criteria, Pageable page) {
         log.debug("find by criteria : {}, page: {}", criteria, page);
-        final Specification<UserJob> specification = createSpecification(criteria);
-        return userJobRepository.findAll(specification, page)
-            .map(userJobMapper::toDto);
+        if (!SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)) {
+            log.debug("Not admin, using current user: {}", SecurityUtils.getCurrentUserLogin());
+            return userJobRepository.findByUserIsCurrentUser(page)
+                .map(userJobMapper::toDto);
+        } else {
+            final Specification<UserJob> specification = createSpecification(criteria);
+            return userJobRepository.findAll(specification, page)
+                .map(userJobMapper::toDto);
+        }
     }
 
     /**

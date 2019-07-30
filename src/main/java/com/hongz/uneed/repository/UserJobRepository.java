@@ -27,5 +27,5 @@ public interface UserJobRepository extends JpaRepository<UserJob, Long>, JpaSpec
     Optional<UserJob> findOneWithEagerRelationships(@Param("id") Long id);
 
     @Query("select userJob from UserJob userJob where userJob.user.login = ?#{principal.username}")
-    List<UserJob> findByUserIsCurrentUser();
+    Page<UserJob> findByUserIsCurrentUser(Pageable pageable);
 }

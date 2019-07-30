@@ -89,17 +89,6 @@ public class UserJobResource {
     }
 
     /**
-     * {@code GET  /user-jobs/current} : get userJobs by current user.
-     *
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the userJobDTO, or with status {@code 404 (Not Found)}.
-     */
-    @GetMapping("/user-jobs/current")
-    public ResponseEntity<UserJobDTO> getCurrentUserJobs() {
-        log.debug("REST request to get UserJobs by currency user");
-        return ResponseUtil.wrapOrNotFound(Optional.ofNullable( userJobService.findByCurrentUser()));
-    }
-
-    /**
      * {@code GET  /user-jobs} : get all the userJobs.
      *
      * @param pageable the pagination information.
