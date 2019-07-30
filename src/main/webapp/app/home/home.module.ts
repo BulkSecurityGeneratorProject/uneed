@@ -8,7 +8,7 @@ import { EntryComponent } from 'app/home/entry/entry.component';
 import { SearchComponent } from 'app/home/search/search.component';
 
 @NgModule({
-  imports: [UneedSharedModule, RouterModule.forChild([HOME_ROUTE])],
+  imports: [UneedSharedModule, RouterModule.forChild(HOME_ROUTE)],
   providers: [HomeService],
   declarations: [HomeComponent, EntryComponent, SearchComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
