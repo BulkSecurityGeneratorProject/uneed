@@ -1,11 +1,11 @@
-id;phone;mobile_phone;email_flag;sms_flag;birth_date;gender
-1;791.775.5141;Practical Fresh Pants;true;false;2019-07-26;MALE
-2;920-191-6365 x04025;enable Gorgeous Frozen Pants;false;false;2019-07-26;FEMALE
-3;(086) 614-0099 x958;access Intelligent;true;false;2019-07-26;OTHER
-4;1-321-673-4525 x51098;Views e-enable Communications;true;true;2019-07-26;OTHER
-5;1-093-837-2585 x392;Faroe Islands Plastic;true;false;2019-07-26;MALE
-6;312.008.1777 x7760;world-class Frozen IB;true;false;2019-07-26;MALE
-7;1-675-628-5431;bus synthesize Idaho;true;false;2019-07-26;MALE
-8;104-120-8643 x556;Concrete Investment Account Saint Lucia;false;false;2019-07-26;OTHER
-9;(189) 682-6184 x8214;EXE projection Fresh;false;false;2019-07-26;MALE
-10;408-383-0155 x4426;encompassing;false;true;2019-07-26;OTHER
+id;phone;mobile_phone;email_flag;sms_flag;birth_date;gender;user_id
+1;791.775.5141;Practical Fresh Pants;true;false;2019-07-26;MALE;4
+2;920-191-6365 x04025;enable Gorgeous Frozen Pants;false;false;2019-07-26;FEMALE;
+3;(086) 614-0099 x958;access Intelligent;true;false;2019-07-26;OTHER;
+4;1-321-673-4525 x51098;Views e-enable Communications;true;true;2019-07-26;OTHER;
+5;1-093-837-2585 x392;Faroe Islands Plastic;true;false;2019-07-26;MALE;
+6;312.008.1777 x7760;world-class Frozen IB;true;false;2019-07-26;MALE;
+7;1-675-628-5431;bus synthesize Idaho;true;false;2019-07-26;MALE;
+8;104-120-8643 x556;Concrete Investment Account Saint Lucia;false;false;2019-07-26;OTHER;
+9;(189) 682-6184 x8214;EXE projection Fresh;false;false;2019-07-26;MALE;
+10;408-383-0155 x4426;encompassing;false;true;2019-07-26;OTHER;

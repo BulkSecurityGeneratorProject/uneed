@@ -94,6 +94,7 @@
             <column name="image_url" type="string"/>
             <column name="create_date" type="datetime"/>
             <column name="last_update_date" type="datetime"/>
+            <column name="user_id" type="numeric"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
         </loadData>
     </changeSet>

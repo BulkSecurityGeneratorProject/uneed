@@ -72,6 +72,7 @@
             <column name="sms_flag" type="boolean"/>
             <column name="birth_date" type="date"/>
             <column name="gender" type="string"/>
+            <column name="user_id" type="numeric"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
         </loadData>
     </changeSet>
