@@ -15,10 +15,10 @@
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {
-        "dashboard": "Dashboard",
-        "main": "Account",
-        "settings": "Settings",
-        "password": "Password",
+        "dashboard": "My Dashboard",
+        "main": "My Account",
+        "settings": "My Settings",
+        "password": "My Password",
         "sessions": "Sessions",
         "login": "Sign in",
         "logout": "Sign out",

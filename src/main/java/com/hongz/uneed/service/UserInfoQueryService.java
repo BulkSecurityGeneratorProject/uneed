@@ -1,9 +1,13 @@
 package com.hongz.uneed.service;
 
-import java.util.List;
-
-import javax.persistence.criteria.JoinType;
-
+import com.hongz.uneed.domain.UserInfo;
+import com.hongz.uneed.domain.UserInfo_;
+import com.hongz.uneed.domain.User_;
+import com.hongz.uneed.repository.UserInfoRepository;
+import com.hongz.uneed.security.AuthoritiesConstants;
+import com.hongz.uneed.security.SecurityUtils;
+import com.hongz.uneed.service.dto.UserInfoCriteria;
+import io.github.jhipster.service.QueryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -12,12 +16,8 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import io.github.jhipster.service.QueryService;
-
-import com.hongz.uneed.domain.UserInfo;
-import com.hongz.uneed.domain.*; // for static metamodels
-import com.hongz.uneed.repository.UserInfoRepository;
-import com.hongz.uneed.service.dto.UserInfoCriteria;
+import javax.persistence.criteria.JoinType;
+import java.util.List;
 
 /**
  * Service for executing complex queries for {@link UserInfo} entities in the database.
@@ -45,8 +45,13 @@ public class UserInfoQueryService extends QueryService<UserInfo> {
     @Transactional(readOnly = true)
     public List<UserInfo> findByCriteria(UserInfoCriteria criteria) {
         log.debug("find by criteria : {}", criteria);
-        final Specification<UserInfo> specification = createSpecification(criteria);
-        return userInfoRepository.findAll(specification);
+        if (!SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)) {
+            log.debug("Not admin, using current user: {}", SecurityUtils.getCurrentUserLogin());
+            return userInfoRepository.findByUserIsCurrentUser();
+        } else {
+            final Specification<UserInfo> specification = createSpecification(criteria);
+            return userInfoRepository.findAll(specification);
+        }
     }
 
     /**

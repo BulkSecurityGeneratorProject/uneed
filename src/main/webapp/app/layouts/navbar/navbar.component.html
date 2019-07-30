@@ -161,10 +161,28 @@
                   </span>
                 </a>
                 <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="account-menu" style="left: -55px;">
+                    <!--<li>-->
+                        <!--<a class="dropdown-item" routerLink="dashboard" routerLinkActive="active" (click)="collapseNavbar()">-->
+                            <!--<fa-icon icon="tachometer-alt" fixedWidth="true"></fa-icon>-->
+                            <!--<span jhiTranslate="global.menu.account.dashboard">Dashboard</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
                     <li>
-                        <a class="dropdown-item" routerLink="dashboard" routerLinkActive="active" (click)="collapseNavbar()">
-                            <fa-icon icon="tachometer-alt" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.account.dashboard">Dashboard</span>
+                        <a class="dropdown-item" routerLink="user-info" routerLinkActive="active" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span>My Account</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="user-job" routerLinkActive="active" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span>My Service</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="user-stat" routerLinkActive="active" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span>My Stats</span>
                         </a>
                     </li>
                     <li>

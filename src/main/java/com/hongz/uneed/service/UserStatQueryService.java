@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.persistence.criteria.JoinType;
 
+import com.hongz.uneed.security.AuthoritiesConstants;
+import com.hongz.uneed.security.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -45,8 +47,13 @@ public class UserStatQueryService extends QueryService<UserStat> {
     @Transactional(readOnly = true)
     public List<UserStat> findByCriteria(UserStatCriteria criteria) {
         log.debug("find by criteria : {}", criteria);
-        final Specification<UserStat> specification = createSpecification(criteria);
-        return userStatRepository.findAll(specification);
+        if (!SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)) {
+            log.debug("Not admin, using current user: {}", SecurityUtils.getCurrentUserLogin());
+            return userStatRepository.findByUserIsCurrentUser();
+        } else {
+            final Specification<UserStat> specification = createSpecification(criteria);
+            return userStatRepository.findAll(specification);
+        }
     }
 
     /**
