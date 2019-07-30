@@ -15,6 +15,7 @@
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {
+        "dashboard": "Dashboard",
         "main": "Account",
         "settings": "Settings",
         "password": "Password",

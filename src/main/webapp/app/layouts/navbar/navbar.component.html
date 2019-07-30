@@ -160,7 +160,13 @@
                       <img [src]="getImageUrl()" class="profile-image rounded-circle" alt="Avatar">
                   </span>
                 </a>
-                <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="account-menu">
+                <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="account-menu" style="left: -55px;">
+                    <li>
+                        <a class="dropdown-item" routerLink="dashboard" routerLinkActive="active" (click)="collapseNavbar()">
+                            <fa-icon icon="tachometer-alt" fixedWidth="true"></fa-icon>
+                            <span jhiTranslate="global.menu.account.dashboard">Dashboard</span>
+                        </a>
+                    </li>
                     <li>
                         <a class="dropdown-item" routerLink="settings" routerLinkActive="active" (click)="collapseNavbar()">
                             <fa-icon icon="wrench" fixedWidth="true"></fa-icon>
