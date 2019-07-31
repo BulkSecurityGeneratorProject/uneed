@@ -17,25 +17,11 @@ export class HomeService {
 
   constructor(protected http: HttpClient) {}
 
-  find(id: number): Observable<EntityResponseType> {
-    return this.http
-      .get<IUserJob>(`${this.resourceUrl}/${id}`, { observe: 'response' })
-      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
-  }
-
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http
       .get<IUserJob[]>(this.resourceUrl, { params: options, observe: 'response' })
       .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
-  }
-
-  protected convertDateFromServer(res: EntityResponseType): EntityResponseType {
-    if (res.body) {
-      res.body.createDate = res.body.createDate != null ? moment(res.body.createDate) : null;
-      res.body.lastUpdateDate = res.body.lastUpdateDate != null ? moment(res.body.lastUpdateDate) : null;
-    }
-    return res;
   }
 
   protected convertDateArrayFromServer(res: EntityArrayResponseType): EntityArrayResponseType {

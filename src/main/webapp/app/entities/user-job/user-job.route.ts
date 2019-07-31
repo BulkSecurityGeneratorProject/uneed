@@ -50,7 +50,7 @@ export const userJobRoute: Routes = [
       userJob: UserJobResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: [],
       pageTitle: 'uneedApp.userJob.home.title'
     },
     canActivate: [UserRouteAccessService]

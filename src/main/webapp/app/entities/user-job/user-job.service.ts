@@ -15,6 +15,7 @@ type EntityArrayResponseType = HttpResponse<IUserJob[]>;
 @Injectable({ providedIn: 'root' })
 export class UserJobService {
   public resourceUrl = SERVER_API_URL + 'api/user-jobs';
+  public resourceUrlPublic = SERVER_API_URL + 'api/pub/user-jobs';
 
   constructor(protected http: HttpClient) {}
 
@@ -34,7 +35,7 @@ export class UserJobService {
 
   find(id: number): Observable<EntityResponseType> {
     return this.http
-      .get<IUserJob>(`${this.resourceUrl}/${id}`, { observe: 'response' })
+      .get<IUserJob>(`${this.resourceUrlPublic}/${id}`, { observe: 'response' })
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
