@@ -8,6 +8,8 @@ import { VERSION } from 'app/app.constants';
 import { JhiLanguageHelper, AccountService, LoginModalService, LoginService } from 'app/core';
 import { ProfileService } from 'app/layouts/profiles/profile.service';
 
+import { faCoffee, faUserCircle, faAddressCard, faChartLine } from '@fortawesome/free-solid-svg-icons';
+
 @Component({
   selector: 'jhi-navbar',
   templateUrl: './navbar.component.html',
@@ -21,7 +23,10 @@ export class NavbarComponent implements OnInit {
   modalRef: NgbModalRef;
   version: string;
   lanKey: string;
-
+  faCoffee = faCoffee;
+  faAddressCard = faAddressCard;
+  faChartLine = faChartLine;
+  faUserCircle = faUserCircle;
   constructor(
     private loginService: LoginService,
     private languageService: JhiLanguageService,

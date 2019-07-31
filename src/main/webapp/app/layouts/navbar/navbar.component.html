@@ -151,7 +151,7 @@
             <li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer" placement="left-bottom" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link dropdown-toggle margin-top-10" ngbDropdownToggle href="javascript:void(0);" id="account-menu">
                   <span *ngIf="!getImageUrl()">
-                    <fa-icon class="text-info" icon="user" size="lg"></fa-icon>
+                    <fa-icon class="text-info" [icon]="faUserCircle" size="lg"></fa-icon>
                     <!--<span jhiTranslate="global.menu.account.main">-->
                       <!--Account-->
                     <!--</span>-->
@@ -169,19 +169,19 @@
                     <!--</li>-->
                     <li>
                         <a class="dropdown-item" routerLink="user-info" routerLinkActive="active" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <fa-icon [icon]="faAddressCard" fixedWidth="true"></fa-icon>
                             <span>My Account</span>
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item" routerLink="user-job" routerLinkActive="active" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <fa-icon [icon]="faCoffee" fixedWidth="true"></fa-icon>
                             <span>My Service</span>
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item" routerLink="user-stat" routerLinkActive="active" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <fa-icon [icon]="faChartLine" fixedWidth="true"></fa-icon>
                             <span>My Stats</span>
                         </a>
                     </li>
