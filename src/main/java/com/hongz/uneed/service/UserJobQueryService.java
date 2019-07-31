@@ -66,10 +66,16 @@ public class UserJobQueryService extends QueryService<UserJob> {
             return userJobRepository.findByUserIsCurrentUser(page)
                 .map(userJobMapper::toDto);
         } else {
-            final Specification<UserJob> specification = createSpecification(criteria);
-            return userJobRepository.findAll(specification, page)
-                .map(userJobMapper::toDto);
+            return findByCriteriaPublic(criteria, page);
         }
+    }
+
+    @Transactional(readOnly = true)
+    public Page<UserJobDTO> findByCriteriaPublic(UserJobCriteria criteria, Pageable page) {
+        log.debug("find by criteria : {}, page: {}", criteria, page);
+        final Specification<UserJob> specification = createSpecification(criteria);
+        return userJobRepository.findAll(specification, page)
+            .map(userJobMapper::toDto);
     }
 
     /**

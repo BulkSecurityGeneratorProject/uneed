@@ -55,7 +55,7 @@ public class PublicUserJobResource {
     @GetMapping("/user-jobs")
     public ResponseEntity<List<UserJobDTO>> getAllUserJobs(UserJobCriteria criteria, Pageable pageable, @RequestParam MultiValueMap<String, String> queryParams, UriComponentsBuilder uriBuilder) {
         log.debug("REST request to get UserJobs by criteria: {}", criteria);
-        Page<UserJobDTO> page = userJobQueryService.findByCriteria(criteria, pageable);
+        Page<UserJobDTO> page = userJobQueryService.findByCriteriaPublic(criteria, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(uriBuilder.queryParams(queryParams), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
