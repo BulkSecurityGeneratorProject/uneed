@@ -1,9 +1,6 @@
 <form #form class="form-inline my-2 my-lg-0" (ngSubmit)="search()">
-    <input class="form-control mr-sm-2" style="width: 80%" type="text" placeholder="Search" [formControl]="content">
+    <input class="form-control mr-sm-2 font-weight-bold" style="width: 80%; font-size: large" type="text" placeholder="Search" [formControl]="content">
     <button class="btn btn-outline-info my-2 my-sm-0" style="padding-right: 30px; padding-left: 30px" type="submit">
         <fa-icon icon="search"></fa-icon>
     </button>
-    <!--<button mat-stroked-button class="btn btn-outline-info my-2 my-sm-0" style="padding-right: 30px; padding-left: 30px" type="submit">-->
-        <!--<fa-icon icon="search"></fa-icon>-->
-    <!--</button>-->
 </form>
