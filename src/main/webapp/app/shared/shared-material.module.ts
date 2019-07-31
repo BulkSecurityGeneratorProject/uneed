@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatInputModule, MatButtonModule, MatCheckboxModule, MatIconModule, MatToolbarModule } from '@angular/material';
 
 @NgModule({
-  imports: [BrowserAnimationsModule, MatButtonModule, MatCheckboxModule],
-  exports: [BrowserAnimationsModule, MatButtonModule, MatCheckboxModule]
+  imports: [BrowserAnimationsModule, MatInputModule, MatButtonModule, MatCheckboxModule, MatIconModule, MatToolbarModule],
+  exports: [BrowserAnimationsModule, MatInputModule, MatButtonModule, MatCheckboxModule, MatIconModule, MatToolbarModule]
 })
 export class UneedSharedMaterialModule {
   static forRoot() {
