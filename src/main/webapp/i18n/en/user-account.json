@@ -1,0 +1,18 @@
+{
+  "uneedApp": {
+    "user": {
+      "dashboard": {
+        "title": "Dashboard"
+      },
+      "account": {
+        "title": "My Account"
+      },
+      "service": {
+        "title": "My Service"
+      },
+      "setting": {
+        "title": "My Setting"
+      }
+    }
+  }
+}

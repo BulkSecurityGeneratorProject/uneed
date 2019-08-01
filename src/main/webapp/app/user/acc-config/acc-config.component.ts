@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { IUserInfo } from 'app/shared/model/user-info.model';
 import { IUserJob } from 'app/shared/model/user-job.model';
-import { DashboardService } from './dashboard.service';
+import { UserboardService } from '../userboard.service';
 import { JhiAlertService } from 'ng-jhipster';
 
 @Component({
-  selector: 'jhi-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  selector: 'jhi-mysetting',
+  templateUrl: './acc-config.component.html',
+  styleUrls: ['./acc-config.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class AccConfigComponent implements OnInit {
   userInfo: IUserInfo;
 
   userJob: IUserJob;
 
-  constructor(protected dashboardService: DashboardService, protected jhiAlertService: JhiAlertService) {}
+  constructor(protected dashboardService: UserboardService, protected jhiAlertService: JhiAlertService) {}
 
   ngOnInit() {}
 

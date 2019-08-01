@@ -17,7 +17,7 @@ export const HOME_ROUTE: Routes = [
     }
   },
   {
-    path: 'dashboard',
-    loadChildren: '../dashboard/dashboard.module#DashboardModule'
+    path: 'user',
+    loadChildren: '../user/userboard.module#UserboardModule'
   }
 ];
