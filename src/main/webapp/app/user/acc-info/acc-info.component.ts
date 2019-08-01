@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IUserInfo, UserInfo } from 'app/shared/model/user-info.model';
-import { IUserJob } from 'app/shared/model/user-job.model';
-import { UserboardService } from '../userboard.service';
 import { JhiAlertService } from 'ng-jhipster';
 import { IUser, UserService } from 'app/core';
-import { UserInfoService } from 'app/entities/user-info';
 import { FormBuilder } from '@angular/forms';
 import { filter, map } from 'rxjs/operators';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
@@ -35,7 +32,6 @@ export class AccInfoComponent implements OnInit {
 
   constructor(
     protected jhiAlertService: JhiAlertService,
-    protected userInfoService: UserInfoService,
     protected userService: UserService,
     protected accInfoService: AccInfoService,
     private fb: FormBuilder
@@ -52,7 +48,6 @@ export class AccInfoComponent implements OnInit {
       .subscribe(
         (res: IUserInfo[]) => {
           if (res && res.length > 0) {
-            console.log(res[0]);
             this.updateForm(res[0]);
           }
         },
@@ -88,9 +83,9 @@ export class AccInfoComponent implements OnInit {
     this.isSaving = true;
     const userInfo = this.createFromForm();
     if (userInfo.id !== undefined) {
-      this.subscribeToSaveResponse(this.userInfoService.update(userInfo));
+      this.subscribeToSaveResponse(this.accInfoService.update(userInfo));
     } else {
-      this.subscribeToSaveResponse(this.userInfoService.create(userInfo));
+      this.subscribeToSaveResponse(this.accInfoService.create(userInfo));
     }
   }
 
