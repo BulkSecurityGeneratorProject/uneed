@@ -28,7 +28,7 @@ export class AccInfoComponent implements OnInit {
     smsFlag: [],
     birthDate: [],
     gender: ['MALE', [Validators.required]],
-    user: [Validators.required]
+    user: []
   });
 
   languages: any[];
@@ -87,14 +87,14 @@ export class AccInfoComponent implements OnInit {
   }
 
   previousState() {
-    window.history.back();
+    // window.history.back();
   }
 
   save() {
     this.saveAccount();
     this.isSaving = true;
     const userInfo = this.createFromForm();
-    if (userInfo.id !== undefined) {
+    if (userInfo.id) {
       this.subscribeToSaveResponse(this.accInfoService.update(userInfo));
     } else {
       this.subscribeToSaveResponse(this.accInfoService.create(userInfo));
@@ -111,7 +111,7 @@ export class AccInfoComponent implements OnInit {
       smsFlag: this.editForm.get(['smsFlag']).value,
       birthDate: this.editForm.get(['birthDate']).value,
       gender: this.editForm.get(['gender']).value,
-      user: this.editForm.get(['user']).value
+      user: this.editForm.get(['user']).value ? this.editForm.get(['user']).value : this.user
     };
   }
 

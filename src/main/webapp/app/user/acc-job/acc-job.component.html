@@ -3,6 +3,10 @@
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
             <h2 jhiTranslate="uneedApp.userJob.home.service">My Service</h2>
             <div>
+                <div class="alert alert-success" *ngIf="success" jhiTranslate="settings.messages.success">
+                    <strong>Settings saved!</strong>
+                </div>
+
                 <jhi-alert-error></jhi-alert-error>
                 <!--<div class="form-group" [hidden]="!editForm.get('id').value">-->
                     <!--<label for="id" jhiTranslate="global.field.id">ID</label>-->

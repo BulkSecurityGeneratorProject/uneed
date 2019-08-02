@@ -22,6 +22,8 @@ import * as moment from 'moment';
 })
 export class AccJobComponent implements OnInit {
   isSaving: boolean;
+  error: string;
+  success: string;
   user: User;
   categories: ICategory[];
   tags: ITag[];
@@ -37,7 +39,7 @@ export class AccJobComponent implements OnInit {
     lastUpdateDate: [],
     categoryId: [null, [Validators.required]],
     tags: [],
-    userId: [null, [Validators.required]]
+    userId: []
   });
 
   constructor(
@@ -95,13 +97,13 @@ export class AccJobComponent implements OnInit {
   }
 
   previousState() {
-    window.history.back();
+    // window.history.back();
   }
 
   save() {
     this.isSaving = true;
     const userJob = this.createFromForm();
-    if (userJob.id !== undefined) {
+    if (userJob.id) {
       this.subscribeToSaveResponse(this.accJobService.update(userJob));
     } else {
       this.subscribeToSaveResponse(this.accJobService.create(userJob));
@@ -125,7 +127,7 @@ export class AccJobComponent implements OnInit {
           : undefined,
       categoryId: this.editForm.get(['categoryId']).value,
       tags: this.editForm.get(['tags']).value,
-      userId: this.editForm.get(['userId']).value
+      userId: this.editForm.get(['userId']).value ? this.editForm.get(['userId']).value : this.user.id
     };
   }
 
@@ -135,11 +137,15 @@ export class AccJobComponent implements OnInit {
 
   protected onSaveSuccess() {
     this.isSaving = false;
+    this.success = 'OK';
+    this.error = null;
     this.previousState();
   }
 
   protected onSaveError() {
     this.isSaving = false;
+    this.success = null;
+    this.error = 'ERROR';
   }
 
   protected onError(errorMessage: string) {

@@ -1,6 +1,11 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <h2 jhiTranslate="uneedApp.userInfo.home.account">My Account</h2>
+
+        <div class="alert alert-success" *ngIf="success" jhiTranslate="settings.messages.success">
+            <strong>Settings saved!</strong>
+        </div>
+
         <jhi-alert-error></jhi-alert-error>
 
         <form name="form" role="form" (ngSubmit)="save()" [formGroup]="settingsForm" *ngIf="settingsForm.get('login').value" novalidate>

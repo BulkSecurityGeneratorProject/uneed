@@ -1,10 +1,16 @@
 <div class="row justify-content-center">
     <div class="col-8">
-        <div *ngIf="userJob" [ngSwitch]="isAuthenticated()">
+        <div *ngIf="userJob">
             <h2><span jhiTranslate="uneedApp.userJob.detail.title">User Job</span> {{userJob.id}}</h2>
             <hr>
             <jhi-alert-error></jhi-alert-error>
             <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="uneedApp.userJob.category">Category</span></dt>
+                <dd>
+                    <div *ngIf="userJob.categoryId">
+                        <a [routerLink]="['/category', userJob.categoryId, 'view']">{{userJob.categoryName}}</a>
+                    </div>
+                </dd>
                 <dt><span jhiTranslate="uneedApp.userJob.name">Name</span></dt>
                 <dd>
                     <span>{{userJob.name}}</span>
@@ -13,6 +19,11 @@
                 <dd>
                     <span>{{userJob.description}}</span>
                 </dd>
+                <dt><span jhiTranslate="uneedApp.userJob.imageUrl">Image Url</span></dt>
+                <dd>
+                    <span>{{userJob.imageUrl}}</span>
+                </dd>
+                <div *jhiHasAnyAuthority="'ROLE_ADMIN'">
                 <dt><span jhiTranslate="uneedApp.userJob.price">Price</span></dt>
                 <dd>
                     <span>{{userJob.price}}</span>
@@ -21,10 +32,6 @@
                 <dd>
                     <span>{{userJob.currency}}</span>
                 </dd>
-                <dt><span jhiTranslate="uneedApp.userJob.imageUrl">Image Url</span></dt>
-                <dd>
-                    <span>{{userJob.imageUrl}}</span>
-                </dd>
                 <dt><span jhiTranslate="uneedApp.userJob.createDate">Create Date</span></dt>
                 <dd>
                     <span>{{userJob.createDate}}</span>
@@ -32,12 +39,6 @@
                 <dt><span jhiTranslate="uneedApp.userJob.lastUpdateDate">Last Update Date</span></dt>
                 <dd>
                     <span>{{userJob.lastUpdateDate}}</span>
-                </dd>
-                <dt><span jhiTranslate="uneedApp.userJob.category">Category</span></dt>
-                <dd>
-                    <div *ngIf="userJob.categoryId">
-                        <a [routerLink]="['/category', userJob.categoryId, 'view']">{{userJob.categoryName}}</a>
-                    </div>
                 </dd>
                 <dt><span jhiTranslate="uneedApp.userJob.tag">Tag</span></dt>
                 <dd>
@@ -49,6 +50,7 @@
                 <dd>
                     {{userJob.userLogin}}
                 </dd>
+                </div>
             </dl>
 
             <button type="submit"
@@ -57,7 +59,7 @@
                 <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
             </button>
 
-            <button type="button" *ngSwitchCase="true"
+            <button type="button" *jhiHasAnyAuthority="'ROLE_ADMIN'"
                     [routerLink]="['/user-job', userJob.id, 'edit']"
                     class="btn btn-primary">
                 <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
