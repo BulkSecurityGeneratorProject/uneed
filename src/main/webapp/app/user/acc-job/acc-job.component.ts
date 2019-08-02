@@ -3,7 +3,6 @@ import { IUserJob, UserJob } from 'app/shared/model/user-job.model';
 import { JhiAlertService } from 'ng-jhipster';
 import { ICategory } from 'app/shared/model/category.model';
 import { ITag } from 'app/shared/model/tag.model';
-import { IUser, UserService } from 'app/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { CategoryService } from 'app/entities/category';
 import { TagService } from 'app/entities/tag';
@@ -12,6 +11,8 @@ import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { DATE_TIME_FORMAT } from 'app/shared';
 import { Observable } from 'rxjs';
 import { AccJobService } from './acc-job.service';
+import { User } from 'app/core';
+import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 
 @Component({
@@ -21,25 +22,22 @@ import * as moment from 'moment';
 })
 export class AccJobComponent implements OnInit {
   isSaving: boolean;
-
+  user: User;
   categories: ICategory[];
-
   tags: ITag[];
-
-  users: IUser[];
 
   editForm = this.fb.group({
     id: [],
     name: [null, [Validators.required]],
-    description: [],
+    description: [null, [Validators.required]],
     price: [],
     currency: [],
     imageUrl: [],
     createDate: [],
     lastUpdateDate: [],
-    categoryId: [],
+    categoryId: [null, [Validators.required]],
     tags: [],
-    userId: []
+    userId: [null, [Validators.required]]
   });
 
   constructor(
@@ -47,33 +45,30 @@ export class AccJobComponent implements OnInit {
     protected accJobService: AccJobService,
     protected categoryService: CategoryService,
     protected tagService: TagService,
-    protected userService: UserService,
+    private route: ActivatedRoute,
     private fb: FormBuilder
   ) {}
 
   ngOnInit() {
     this.isSaving = false;
+    this.route.data.subscribe(({ user }) => (this.user = user.body ? user.body : user));
+
     this.accJobService
       .current()
       .pipe(
         filter((res: HttpResponse<IUserJob[]>) => res.ok),
-        map((res: HttpResponse<IUserJob[]>) => res.body)
+        map((res: HttpResponse<IUserJob[]>) => res.body),
+        filter((res: IUserJob[]) => res.length > 0),
+        map((res: IUserJob[]) => res[0])
       )
-      .subscribe(
-        (res: IUserJob[]) => {
-          if (res && res.length > 0) {
-            this.updateForm(res[0]);
-          }
-        },
-        (res: HttpErrorResponse) => this.onError(res.message)
-      );
+      .subscribe((res: IUserJob) => this.updateForm(res), (res: HttpErrorResponse) => this.onError(res.message));
     this.categoryService
       .query()
       .pipe(
         filter((mayBeOk: HttpResponse<ICategory[]>) => mayBeOk.ok),
         map((response: HttpResponse<ICategory[]>) => response.body)
       )
-      .subscribe((res: ICategory[]) => (this.categories = res), (res: HttpErrorResponse) => this.onError(res.message));
+      .subscribe((res: ICategory[]) => this.setCategory(res), (res: HttpErrorResponse) => this.onError(res.message));
     this.tagService
       .query()
       .pipe(
@@ -81,13 +76,6 @@ export class AccJobComponent implements OnInit {
         map((response: HttpResponse<ITag[]>) => response.body)
       )
       .subscribe((res: ITag[]) => (this.tags = res), (res: HttpErrorResponse) => this.onError(res.message));
-    this.userService
-      .query()
-      .pipe(
-        filter((mayBeOk: HttpResponse<IUser[]>) => mayBeOk.ok),
-        map((response: HttpResponse<IUser[]>) => response.body)
-      )
-      .subscribe((res: IUser[]) => (this.users = res), (res: HttpErrorResponse) => this.onError(res.message));
   }
 
   updateForm(userJob: IUserJob) {
@@ -102,7 +90,7 @@ export class AccJobComponent implements OnInit {
       lastUpdateDate: userJob.lastUpdateDate != null ? userJob.lastUpdateDate.format(DATE_TIME_FORMAT) : null,
       categoryId: userJob.categoryId,
       tags: userJob.tags,
-      userId: userJob.userId
+      userId: userJob.userId ? userJob.userId : this.user.id
     });
   }
 
@@ -166,10 +154,6 @@ export class AccJobComponent implements OnInit {
     return item.id;
   }
 
-  trackUserById(index: number, item: IUser) {
-    return item.id;
-  }
-
   getSelected(selectedVals: Array<any>, option: any) {
     if (selectedVals) {
       for (let i = 0; i < selectedVals.length; i++) {
@@ -179,5 +163,12 @@ export class AccJobComponent implements OnInit {
       }
     }
     return option;
+  }
+
+  private setCategory(list: ICategory[]) {
+    this.categories = list;
+    if (list.length > 0 && !this.editForm.get(['categoryId']).value) {
+      this.editForm.get(['categoryId']).setValue(list[0].id);
+    }
   }
 }

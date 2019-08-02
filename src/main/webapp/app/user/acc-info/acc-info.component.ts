@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { IUserInfo, UserInfo } from 'app/shared/model/user-info.model';
 import { JhiAlertService } from 'ng-jhipster';
-import { IUser, UserService } from 'app/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { filter, map } from 'rxjs/operators';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AccInfoService } from './acc-info.service';
+import { ActivatedRoute } from '@angular/router';
+import { User } from 'app/core';
 
 @Component({
   selector: 'jhi-myaccount',
@@ -16,9 +17,8 @@ import { AccInfoService } from './acc-info.service';
 export class AccInfoComponent implements OnInit {
   isSaving: boolean;
 
-  users: IUser[];
   birthDateDp: any;
-
+  user: User;
   editForm = this.fb.group({
     id: [],
     phone: [],
@@ -26,40 +26,30 @@ export class AccInfoComponent implements OnInit {
     emailFlag: [],
     smsFlag: [],
     birthDate: [],
-    gender: [],
-    user: []
+    gender: ['MALE', [Validators.required]],
+    user: [Validators.required]
   });
 
   constructor(
     protected jhiAlertService: JhiAlertService,
-    protected userService: UserService,
     protected accInfoService: AccInfoService,
+    private route: ActivatedRoute,
     private fb: FormBuilder
   ) {}
 
   ngOnInit() {
     this.isSaving = false;
+    this.route.data.subscribe(({ user }) => (this.user = user.body ? user.body : user));
+
     this.accInfoService
       .current()
       .pipe(
         filter((res: HttpResponse<IUserInfo[]>) => res.ok),
-        map((res: HttpResponse<IUserInfo[]>) => res.body)
+        map((res: HttpResponse<IUserInfo[]>) => res.body),
+        filter((res: IUserInfo[]) => res.length > 0),
+        map((res: IUserInfo[]) => res[0])
       )
-      .subscribe(
-        (res: IUserInfo[]) => {
-          if (res && res.length > 0) {
-            this.updateForm(res[0]);
-          }
-        },
-        (res: HttpErrorResponse) => this.onError(res.message)
-      );
-    this.userService
-      .query()
-      .pipe(
-        filter((mayBeOk: HttpResponse<IUser[]>) => mayBeOk.ok),
-        map((response: HttpResponse<IUser[]>) => response.body)
-      )
-      .subscribe((res: IUser[]) => (this.users = res), (res: HttpErrorResponse) => this.onError(res.message));
+      .subscribe((res: IUserInfo) => this.updateForm(res), (res: HttpErrorResponse) => this.onError(res.message));
   }
 
   updateForm(userInfo: IUserInfo) {
@@ -71,7 +61,7 @@ export class AccInfoComponent implements OnInit {
       smsFlag: userInfo.smsFlag,
       birthDate: userInfo.birthDate,
       gender: userInfo.gender,
-      user: userInfo.user
+      user: userInfo.user ? userInfo.user : this.user
     });
   }
 
@@ -117,9 +107,5 @@ export class AccInfoComponent implements OnInit {
   }
   protected onError(errorMessage: string) {
     this.jhiAlertService.error(errorMessage, null, null);
-  }
-
-  trackUserById(index: number, item: IUser) {
-    return item.id;
   }
 }

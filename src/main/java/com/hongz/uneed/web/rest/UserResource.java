@@ -178,6 +178,18 @@ public class UserResource {
     }
 
     /**
+     * {@code GET /users/current} : get current user.
+     *
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the "login" user, or with status {@code 404 (Not Found)}.
+     */
+    @GetMapping("/users/current")
+    public ResponseEntity<User> getCurrentUser() {
+        log.debug("REST request to get current User");
+        return ResponseUtil.wrapOrNotFound(userRepository.findByUserIsCurrentUser());
+    }
+
+
+    /**
      * {@code DELETE /users/:login} : delete the "login" User.
      *
      * @param login the login of the user to delete.

@@ -5,7 +5,8 @@
         "title": "User Infos",
         "createLabel": "Create a new User Info",
         "createOrEditLabel": "Create or edit a User Info",
-        "notFound": "No User Info found"
+        "notFound": "No User Info found",
+        "account": "My Account"
       },
       "created": "A new User Info is created with identifier {{ param }}",
       "updated": "A User Info is updated with identifier {{ param }}",
@@ -18,8 +19,8 @@
       },
       "phone": "Phone",
       "mobilePhone": "Mobile Phone",
-      "emailFlag": "Email Flag",
-      "smsFlag": "Sms Flag",
+      "emailFlag": "Receive Email",
+      "smsFlag": "Receive SMS",
       "birthDate": "Birth Date",
       "gender": "Gender",
       "user": "User"

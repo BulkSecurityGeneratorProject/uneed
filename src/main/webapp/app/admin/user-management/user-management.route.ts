@@ -29,6 +29,15 @@ export class UserMgmtResolve implements Resolve<any> {
   }
 }
 
+@Injectable({ providedIn: 'root' })
+export class UserCurrentResolve implements Resolve<any> {
+  constructor(private userService: UserService) {}
+
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    return this.userService.current();
+  }
+}
+
 export const userMgmtRoute: Routes = [
   {
     path: 'user-management',
