@@ -1,29 +1,85 @@
 <div class="row justify-content-center">
     <div class="col-8">
+        <h2 jhiTranslate="uneedApp.userInfo.home.account">My Account</h2>
+        <jhi-alert-error></jhi-alert-error>
+
+        <form name="form" role="form" (ngSubmit)="save()" [formGroup]="settingsForm" *ngIf="settingsForm.get('login').value" novalidate>
+
+            <div class="form-group">
+                <label class="form-control-label" for="firstName" jhiTranslate="settings.form.firstname">First Name</label>
+                <input type="text" class="form-control" id="firstName" name="firstName" placeholder="{{'settings.form.firstname.placeholder' | translate}}"
+                       formControlName="firstName">
+                <div *ngIf="settingsForm.get('firstName').invalid && (settingsForm.get('firstName').dirty || settingsForm.get('firstName').touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="settingsForm.get('firstName').errors.required" jhiTranslate="settings.messages.validate.firstname.required">
+                        Your first name is required.
+                    </small>
+                    <small class="form-text text-danger"
+                           *ngIf="settingsForm.get('firstName').errors.minlength" jhiTranslate="settings.messages.validate.firstname.minlength">
+                        Your first name is required to be at least 1 character.
+                    </small>
+                    <small class="form-text text-danger"
+                           *ngIf="settingsForm.get('firstName').errors.maxlength" jhiTranslate="settings.messages.validate.firstname.maxlength">
+                        Your first name cannot be longer than 50 characters.
+                    </small>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-control-label" for="lastName" jhiTranslate="settings.form.lastname">Last Name</label>
+                <input type="text" class="form-control" id="lastName" name="lastName" placeholder="{{'settings.form.lastname.placeholder' | translate}}"
+                       formControlName="lastName">
+                <div *ngIf="settingsForm.get('lastName').invalid && (settingsForm.get('lastName').dirty || settingsForm.get('lastName').touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="settingsForm.get('lastName').errors.required" jhiTranslate="settings.messages.validate.lastname.required">
+                        Your last name is required.
+                    </small>
+                    <small class="form-text text-danger"
+                           *ngIf="settingsForm.get('lastName').errors.minlength" jhiTranslate="settings.messages.validate.lastname.minlength">
+                        Your last name is required to be at least 1 character.
+                    </small>
+                    <small class="form-text text-danger"
+                           *ngIf="settingsForm.get('lastName').errors.maxlength" jhiTranslate="settings.messages.validate.lastname.maxlength">
+                        Your last name cannot be longer than 50 characters.
+                    </small>
+                </div>
+            </div>
+<!--            <div class="form-group">-->
+<!--                <label class="form-control-label" for="email" jhiTranslate="global.form.email.label">Email</label>-->
+<!--                <input type="email" class="form-control" id="email" name="email" placeholder="{{'global.form.email.placeholder' | translate}}"-->
+<!--                       formControlName="email">-->
+<!--                <div *ngIf="settingsForm.get('email').invalid && (settingsForm.get('email').dirty || settingsForm.get('email').touched)">-->
+<!--                    <small class="form-text text-danger"-->
+<!--                           *ngIf="settingsForm.get('email').errors.required" jhiTranslate="global.messages.validate.email.required">-->
+<!--                        Your email is required.-->
+<!--                    </small>-->
+<!--                    <small class="form-text text-danger"-->
+<!--                           *ngIf="settingsForm.get('email').errors.email" jhiTranslate="global.messages.validate.email.invalid">-->
+<!--                        Your email is invalid.-->
+<!--                    </small>-->
+<!--                    <small class="form-text text-danger"-->
+<!--                           *ngIf="settingsForm.get('email').errors.minlength" jhiTranslate="global.messages.validate.email.minlength">-->
+<!--                        Your email is required to be at least 5 characters.-->
+<!--                    </small>-->
+<!--                    <small class="form-text text-danger"-->
+<!--                           *ngIf="settingsForm.get('email').errors.maxlength" jhiTranslate="global.messages.validate.email.maxlength">-->
+<!--                        Your email cannot be longer than 100 characters.-->
+<!--                    </small>-->
+<!--                </div>-->
+<!--            </div>-->
+            <div class="form-group" *ngIf="languages && languages.length > 0">
+                <label for="langKey" jhiTranslate="settings.form.language">Language</label>
+                <select class="form-control" id="langKey" name="langKey" formControlName="langKey">
+                    <option *ngFor="let language of languages" [value]="language">{{language | findLanguageFromKey}}</option>
+                </select>
+            </div>
+        </form>
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-            <h2 jhiTranslate="uneedApp.userInfo.home.account">My Account</h2>
             <div>
-                <jhi-alert-error></jhi-alert-error>
 <!--                <div class="form-group">-->
 <!--                    <label class="form-control-label" jhiTranslate="uneedApp.userInfo.phone" for="field_phone">Phone</label>-->
 <!--                    <input type="text" class="form-control" name="phone" id="field_phone" placeholder="(012) 345-6789"-->
 <!--                           formControlName="phone"/>-->
 <!--                </div>-->
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="uneedApp.userInfo.mobilePhone" for="field_mobilePhone">Mobile Phone</label>
-                    <input type="text" class="form-control" name="mobilePhone" id="field_mobilePhone" placeholder="(012) 345-6789"
-                           formControlName="mobilePhone"/>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="uneedApp.userInfo.emailFlag" for="field_emailFlag">Email Flag</label>
-                    <input type="checkbox" class="" name="emailFlag" id="field_emailFlag" style="margin-left: 10px"
-                           formControlName="emailFlag"/>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="uneedApp.userInfo.smsFlag" for="field_smsFlag">Sms Flag</label>
-                    <input type="checkbox" class="" name="smsFlag" id="field_smsFlag" style="margin-left: 10px"
-                           formControlName="smsFlag"/>
-                </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="uneedApp.userInfo.birthDate" for="field_birthDate">Birth Date</label>
                     <div class="input-group">
@@ -41,12 +97,27 @@
                         <option value="OTHER">{{'uneedApp.Gender.OTHER' | translate}}</option>
                     </select>
                 </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="uneedApp.userInfo.mobilePhone" for="field_mobilePhone">Mobile Phone</label>
+                    <input type="text" class="form-control" name="mobilePhone" id="field_mobilePhone" placeholder="(012) 345-6789"
+                           formControlName="mobilePhone"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="uneedApp.userInfo.emailFlag" for="field_emailFlag">Email Flag</label>
+                    <input type="checkbox" class="" name="emailFlag" id="field_emailFlag" style="margin-left: 10px"
+                           formControlName="emailFlag"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="uneedApp.userInfo.smsFlag" for="field_smsFlag">Sms Flag</label>
+                    <input type="checkbox" class="" name="smsFlag" id="field_smsFlag" style="margin-left: 10px"
+                           formControlName="smsFlag"/>
+                </div>
             </div>
             <div>
                 <!--<button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">-->
                     <!--<fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>-->
                 <!--</button>-->
-                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                <button type="submit" id="save-entity" [disabled]="settingsForm.invalid || editForm.invalid || isSaving" class="btn btn-primary">
                     <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
                 </button>
             </div>
