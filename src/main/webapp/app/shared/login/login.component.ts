@@ -162,7 +162,6 @@ export class JhiLoginModalComponent implements AfterViewInit {
     } else {
       words = this.dict.getWordsByPrefix(prefix);
     }
-    console.log(words);
     // auto complete
     if (words.length > 0) {
       const subStr = words[0].substr(prefix.length, words[0].length);
@@ -198,9 +197,9 @@ export class JhiLoginModalComponent implements AfterViewInit {
       if (!domainRegExp.test(domainPart)) {
         return this.setError(INVALID_DOMAIN);
       }
-      if (lastDotPos < lastAtPos) {
-        return this.setError(ERR_MISSING_DOT);
-      }
+      // if (lastDotPos < lastAtPos) {
+      //   return this.setError(ERR_MISSING_DOT);
+      // }
       const namePart = email.substr(0, lastAtPos);
       const nameRegExp = new RegExp(PATTERN_NAME);
       if (namePart.length === 0) {
@@ -210,7 +209,12 @@ export class JhiLoginModalComponent implements AfterViewInit {
         return this.setError(ERR_IS_TYPO);
       }
     }
+    this.setEmail();
     return true;
+  }
+
+  private setEmail() {
+    this.loginForm.patchValue({ username: this.email });
   }
 
   deliverable() {

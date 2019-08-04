@@ -31,7 +31,8 @@
 
                     <label class="form-control-label" for="login" jhiTranslate="global.form.username.label">Username</label>
                     <input type="text" class="form-control" id="login" name="login" placeholder="{{'global.form.username.placeholder' | translate}}"
-                           formControlName="login">
+                           formControlName="login"
+                    >
                     <div *ngIf="registerForm.get('login').invalid && (registerForm.get('login').dirty || registerForm.get('login').touched)">
                         <small class="form-text text-danger" *ngIf="registerForm.get('login').errors.required" jhiTranslate="register.messages.validate.login.required">
                             Your username is required.
@@ -52,8 +53,12 @@
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" for="email" jhiTranslate="global.form.email.label">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="{{'global.form.email.placeholder' | translate}}"
-                             formControlName="email">
+                    <input type="text" class="form-control" id="email" name="email" placeholder="{{'global.form.email.placeholder' | translate}}"
+                             formControlName="email"
+                           (change)="handleChange($event)"
+                           (keypress)="handleKeyPress($event)"
+                           (focusout)="onFocusOut($event)"
+                    >
                     <div *ngIf="registerForm.get('email').invalid && (registerForm.get('email').dirty || registerForm.get('email').touched)">
                         <small class="form-text text-danger" *ngIf="registerForm.get('email').errors.required"
                                 jhiTranslate="global.messages.validate.email.required">
