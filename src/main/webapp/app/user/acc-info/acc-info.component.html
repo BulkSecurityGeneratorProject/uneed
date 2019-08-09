@@ -9,7 +9,9 @@
         <jhi-alert-error></jhi-alert-error>
 
         <form name="form" role="form" (ngSubmit)="save()" [formGroup]="settingsForm" *ngIf="settingsForm.get('login').value" novalidate>
-
+            <div class="form-group">
+                <jhi-image-uploader [(image)]="image" (imageChange)="updateImage($event)"></jhi-image-uploader>
+            </div>
             <div class="form-group">
                 <label class="form-control-label" for="firstName" jhiTranslate="settings.form.firstname">First Name</label>
                 <input type="text" class="form-control" id="firstName" name="firstName" placeholder="{{'settings.form.firstname.placeholder' | translate}}"

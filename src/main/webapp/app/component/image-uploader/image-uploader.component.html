@@ -1,0 +1,5 @@
+<div>
+    <img *ngIf="image" alt="avatar" class="rounded-circle" [src]="image" style="height: 200px">
+    <i *ngIf="!image" class="fa fa-user-circle-o fa-3x text-primary"></i>
+    <input type="file" name="file" id="file" accept="image/*" (change)="change($event)"/>
+</div>

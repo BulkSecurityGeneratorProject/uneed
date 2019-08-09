@@ -11,11 +11,12 @@ import { AccInfoComponent } from './acc-info/acc-info.component';
 import { AccJobComponent } from './acc-job/acc-job.component';
 import { AccInfoService } from './acc-info/acc-info.service';
 import { AccJobService } from 'app/user/acc-job/acc-job.service';
+import { ImageUploaderModule } from 'app/component';
 
 @NgModule({
   declarations: [DashboardComponent, AccConfigComponent, AccInfoComponent, AccJobComponent],
   providers: [UserboardService, AccInfoService, AccJobService, { provide: JhiLanguageService, useClass: JhiLanguageService }],
-  imports: [UneedSharedModule, RouterModule.forChild(UserboardRoute)],
+  imports: [UneedSharedModule, ImageUploaderModule, RouterModule.forChild(UserboardRoute)],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class UserboardModule {
