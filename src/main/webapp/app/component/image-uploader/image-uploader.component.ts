@@ -15,9 +15,7 @@ export class ImageUploaderComponent implements OnInit {
 
   constructor(private sanitizer: DomSanitizer) {}
 
-  ngOnInit() {
-    console.log(this.image);
-  }
+  ngOnInit() {}
 
   change(event) {
     if (event.target.files.length > 0) {
