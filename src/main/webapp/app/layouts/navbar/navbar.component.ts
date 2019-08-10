@@ -4,7 +4,7 @@ import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiLanguageService } from 'ng-jhipster';
 import { SessionStorageService } from 'ngx-webstorage';
 
-import { VERSION } from 'app/app.constants';
+import { AVATAR, VERSION } from 'app/app.constants';
 import { JhiLanguageHelper, AccountService, LoginModalService, LoginService } from 'app/core';
 import { ProfileService } from 'app/layouts/profiles/profile.service';
 
@@ -82,6 +82,6 @@ export class NavbarComponent implements OnInit {
   }
 
   getImageUrl() {
-    return this.isAuthenticated() ? this.accountService.getImageUrl() : null;
+    return this.isAuthenticated() ? this.accountService.getImageUrl() : AVATAR;
   }
 }

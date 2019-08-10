@@ -4,7 +4,7 @@ import { SessionStorageService } from 'ngx-webstorage';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 
-import { SERVER_API_URL } from 'app/app.constants';
+import { AVATAR, SERVER_API_URL } from 'app/app.constants';
 import { Account } from 'app/core/user/account.model';
 
 @Injectable({ providedIn: 'root' })
@@ -111,6 +111,6 @@ export class AccountService {
   }
 
   getImageUrl(): string {
-    return this.isIdentityResolved() ? this.userIdentity.logo : null;
+    return this.isIdentityResolved() ? (this.userIdentity.logo ? this.userIdentity.logo : AVATAR) : AVATAR;
   }
 }
