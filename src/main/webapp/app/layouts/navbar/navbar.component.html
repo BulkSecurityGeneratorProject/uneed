@@ -1,8 +1,8 @@
-<nav class="navbar navbar-light navbar-expand-md bg-light">
+<nav id="nav" class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary navbar-transparent">
     <a class="navbar-brand logo" routerLink="/" (click)="collapseNavbar()">
         <!--<span class="logo-img"></span>-->
         <span class="navbar-title">
-            <span class="navbar-u text-primary">U.NEED</span>
+            <span class="navbar-u">U.NEED</span>
             <!--<span class="navbar-need">need</span>-->
         </span>
         <span class="navbar-version">Find service you need!</span>
@@ -15,7 +15,7 @@
             <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link margin-top-10" routerLink="/" (click)="collapseNavbar()">
                     <span>
-                        <fa-icon class="text-primary" icon="home" size="lg"></fa-icon>
+                        <fa-icon class="" icon="home" size="lg"></fa-icon>
                         <!--<span jhiTranslate="global.menu.home">Home</span>-->
                     </span>
                 </a>
@@ -24,7 +24,7 @@
             <li *jhiHasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link dropdown-toggle margin-top-10" ngbDropdownToggle href="javascript:void(0);" id="entity-menu">
                     <span>
-                        <fa-icon class="text-primary" icon="th-list" size="lg"></fa-icon>
+                        <fa-icon class="" icon="th-list" size="lg"></fa-icon>
                         <span jhiTranslate="global.menu.entities.main">
                             Entities
                         </span>
@@ -67,7 +67,7 @@
             <li *jhiHasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link dropdown-toggle margin-top-10" ngbDropdownToggle href="javascript:void(0);" id="admin-menu">
                     <span>
-                        <fa-icon class="text-primary" icon="user-plus" size="lg"></fa-icon>
+                        <fa-icon class="" icon="user-plus" size="lg"></fa-icon>
                         <span jhiTranslate="global.menu.admin.main">Administration</span>
                     </span>
                 </a>
@@ -126,7 +126,7 @@
             <li ngbDropdown class="nav-item dropdown pointer" *ngIf="languages && languages.length > 1">
                 <a class="nav-link dropdown-toggle margin-top-10" ngbDropdownToggle href="javascript:void(0);" id="languagesnavBarDropdown">
                     <span>
-                        <fa-icon class="text-primary" icon="flag" size="lg"></fa-icon>
+                        <fa-icon class="" icon="flag" size="lg"></fa-icon>
                         <span style="text-transform: uppercase">{{lanKey?lanKey : 'EN'}}</span>
                     </span>
                 </a>
@@ -139,7 +139,7 @@
             <li *ngSwitchCase="false" class="nav-item pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link" (click)="login();collapseNavbar()" id="nav-login" >
                     <!--<fa-icon icon="sign-in-alt" fixedWidth="true"></fa-icon>-->
-                    <button class="btn btn-outline-primary" jhiTranslate="global.menu.account.login">Sign in</button>
+                    <button class="btn btn-outline-primary text-light" jhiTranslate="global.menu.account.login">Sign in</button>
                 </a>
             </li>
             <li *ngSwitchCase="false" class="nav-item pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
@@ -151,7 +151,7 @@
             <li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer" placement="left-bottom" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link dropdown-toggle margin-top-10" ngbDropdownToggle href="javascript:void(0);" id="account-menu">
                   <span *ngIf="!getImageUrl()">
-                    <fa-icon class="text-primary" [icon]="faUserCircle" size="lg"></fa-icon>
+                    <fa-icon class="" [icon]="faUserCircle" size="lg"></fa-icon>
                     <!--<span jhiTranslate="global.menu.account.main">-->
                       <!--Account-->
                     <!--</span>-->
@@ -213,7 +213,7 @@
             </li>
             <li *ngSwitchCase="true" class="nav-item pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link margin-top-10" (click)="logout()" id="logout">
-                    <fa-icon class="text-primary" icon="sign-out-alt" fixedWidth="true" size="lg"></fa-icon>
+                    <fa-icon class="" icon="sign-out-alt" fixedWidth="true" size="lg"></fa-icon>
                     <!--<span jhiTranslate="global.menu.account.logout">Sign out</span>-->
                 </a>
             </li>

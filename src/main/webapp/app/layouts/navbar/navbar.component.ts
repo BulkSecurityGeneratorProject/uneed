@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterContentInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiLanguageService } from 'ng-jhipster';
@@ -15,7 +15,7 @@ import { faCoffee, faUserCircle, faAddressCard, faChartLine } from '@fortawesome
   templateUrl: './navbar.component.html',
   styleUrls: ['navbar.scss']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, AfterContentInit {
   inProduction: boolean;
   isNavbarCollapsed: boolean;
   languages: any[];
@@ -83,5 +83,18 @@ export class NavbarComponent implements OnInit {
 
   getImageUrl() {
     return this.isAuthenticated() ? this.accountService.getImageUrl() : AVATAR;
+  }
+
+  ngAfterContentInit() {
+    (() => {
+      const nav = document.getElementById('nav');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 1.5) {
+          nav.classList.remove('navbar-transparent');
+        } else {
+          nav.classList.add('navbar-transparent');
+        }
+      });
+    })();
   }
 }
