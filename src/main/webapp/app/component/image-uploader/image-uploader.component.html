@@ -1,7 +1,7 @@
 <div>
     <img *ngIf="image" alt="avatar" class="rounded-circle" [src]="image" style="height: 200px">
     <i *ngIf="!image" class="fa fa-user-circle-o fa-3x text-primary"></i>
-    <button type="button" class="btn-upload" style="outline: none;" mat-mini-fab color="basic" (click)="imgFileInput.click()">
+    <button type="button" style="outline: none;" mat-mini-fab color="basic" (click)="imgFileInput.click()">
         <i class="fa fa-upload"></i>
     </button>
     <input hidden type="file" #imgFileInput accept="image/*" (change)="change($event)"/>
