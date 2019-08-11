@@ -27,6 +27,7 @@ export class NavbarComponent implements OnInit, AfterContentInit {
   faAddressCard = faAddressCard;
   faChartLine = faChartLine;
   faUserCircle = faUserCircle;
+  domNav: any;
   constructor(
     private loginService: LoginService,
     private languageService: JhiLanguageService,
@@ -79,6 +80,7 @@ export class NavbarComponent implements OnInit, AfterContentInit {
 
   toggleNavbar() {
     this.isNavbarCollapsed = !this.isNavbarCollapsed;
+    this.isNavbarCollapsed ? this.removeTransparent() : this.addTransparent();
   }
 
   getImageUrl() {
@@ -86,15 +88,19 @@ export class NavbarComponent implements OnInit, AfterContentInit {
   }
 
   ngAfterContentInit() {
+    this.domNav = document.getElementById('nav');
     (() => {
-      const nav = document.getElementById('nav');
       window.addEventListener('scroll', () => {
-        if (window.scrollY > 1.5) {
-          nav.classList.remove('navbar-transparent');
-        } else {
-          nav.classList.add('navbar-transparent');
-        }
+        window.scrollY > 1.5 ? this.addTransparent() : this.removeTransparent();
       });
     })();
+  }
+
+  addTransparent() {
+    this.domNav.classList.remove('navbar-transparent');
+  }
+
+  removeTransparent() {
+    this.domNav.classList.add('navbar-transparent');
   }
 }
