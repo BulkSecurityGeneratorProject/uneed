@@ -1,6 +1,45 @@
-<form #form class="form-inline my-2 my-lg-0" (ngSubmit)="search()">
-    <input class="form-control mr-sm-2 font-weight-bold" style="width: 80%; font-size: large" type="text" placeholder="Search" [formControl]="content">
-    <button class="btn btn-primary my-2 my-sm-0" style="padding-right: 30px; padding-left: 30px" type="submit">
-        <fa-icon icon="search"></fa-icon>
-    </button>
+<form role="form" novalidate  class="my-2 my-lg-0" (ngSubmit)="search()" [formGroup]="form">
+
+<!--    <div class="row">-->
+<!--        <div class="col-md-6 col-xs-12">-->
+<!--            <select class="" id="field_category" name="category" formControlName="categoryId">-->
+<!--                &lt;!&ndash;<option [ngValue]="null"></option>&ndash;&gt;-->
+<!--                <option [ngValue]="entry.id" *ngFor="let entry of categories; trackBy: trackCategoryById">{{entry.name}}</option>-->
+<!--            </select>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="row">-->
+<!--        <div class="col-md-12 col-xs-12">-->
+<!--            <div class="form-control">-->
+<!--            <input class="font-weight-bold" style="width: 80%; font-size: large" type="text"-->
+<!--                   placeholder="Search" formControlName="content">-->
+<!--            <button class="btn btn-primary my-2 my-sm-0" style="padding-right: 30px; padding-left: 30px" type="submit">-->
+<!--                <fa-icon icon="search"></fa-icon>-->
+<!--            </button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+    <div class="row">
+        <div class="col">
+            <input class="form-control mr-sm-2" style="font-size: large" type="text" placeholder="City" formControlName="location">
+        </div>
+        <div class="col">
+            <select class="form-control mr-sm-2" style="font-size: large" id="field_category" name="category"
+                    formControlName="categoryId">
+                <option [ngValue]="null" class="text-light" hidden>Select category</option>
+                <option [ngValue]="entry.id" *ngFor="let entry of categories; trackBy: trackCategoryById">{{entry.name}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="form-inline">
+                <input class="form-control mr-sm-2" style="width:75%; font-size: large" type="text" placeholder="What are you looking for?" formControlName="content">
+                <button class="btn btn-primary my-2 my-sm-0 px-md-5 px-sm-3 ml-md-3 ml-sm-0" type="submit">
+                    <fa-icon icon="search"></fa-icon>
+                </button>
+            </div>
+        </div>
+    </div>
 </form>
