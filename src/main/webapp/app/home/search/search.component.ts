@@ -6,6 +6,7 @@ import { ICategory } from 'app/shared/model/category.model';
 import { CategoryService } from 'app/entities/category';
 import { ITag } from 'app/shared/model/tag.model';
 import { TagService } from 'app/entities/tag';
+import { CATEGORIES } from 'app/shared/constants/model.constants';
 
 @Component({
   selector: 'jhi-search',
@@ -29,7 +30,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   constructor(protected categoryService: CategoryService, protected tagService: TagService, private fb: FormBuilder) {}
 
   ngOnInit() {
-    this.setCategory([{ id: 1, name: 'Home' }, { id: 2, name: 'Learning' }]);
+    this.setCategory(CATEGORIES);
     // this.categoryService
     //   .query()
     //   .pipe(
