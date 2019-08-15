@@ -16,6 +16,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   @Output() criteria: any = new EventEmitter();
 
   form = this.fb.group({
+    type: ['service'],
     content: [''],
     categoryId: [null],
     location: [null, [Validators.required]]
@@ -23,6 +24,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   categories: ICategory[];
   tags: ITag[];
+  hasCategory = true;
 
   constructor(protected categoryService: CategoryService, protected tagService: TagService, private fb: FormBuilder) {}
 
@@ -66,6 +68,21 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   trackTagById(index: number, item: ITag) {
     return item.id;
+  }
+
+  onTypeChange(type: string) {
+    this.form.get(['type']).setValue(type);
+    switch (type) {
+      case 'place':
+      case 'restaurant':
+        this.hasCategory = false;
+        break;
+      case 'group':
+      case 'service':
+      default:
+        this.hasCategory = true;
+        break;
+    }
   }
 
   ngOnDestroy() {}

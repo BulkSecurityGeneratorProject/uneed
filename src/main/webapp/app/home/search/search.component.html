@@ -1,4 +1,11 @@
-<form role="form" novalidate  class="my-2 my-lg-0" (ngSubmit)="search()" [formGroup]="form">
+<div>
+    <button class="btn btn-outline-info text-light mx-1 my-3" (click)="onTypeChange('service')"><i class="fa fa-coffee"></i> Service</button>
+    <button class="btn btn-outline-info text-light mx-1 my-3" (click)="onTypeChange('place')"><i class="fa fa-map-marker"></i> Place</button>
+    <button class="btn btn-outline-info text-light mx-1 my-3" (click)="onTypeChange('group')"><i class="fa fa-users"></i> Group</button>
+    <button class="btn btn-outline-info text-light mx-1 my-3" (click)="onTypeChange('restaurant')"><i class="fa fa-cutlery"></i> Restaurant</button>
+</div>
+
+<form role="form" novalidate  class="my-2 my-lg-0 p-3 search-form" (ngSubmit)="search()" [formGroup]="form">
 
 <!--    <div class="row">-->
 <!--        <div class="col-md-6 col-xs-12">-->
@@ -20,11 +27,12 @@
 <!--            </div>-->
 <!--        </div>-->
 <!--    </div>-->
+
     <div class="row">
         <div class="col">
             <input class="form-control mr-sm-2" style="font-size: large" type="text" placeholder="City" formControlName="location">
         </div>
-        <div class="col">
+        <div class="col" *ngIf="hasCategory">
             <select class="form-control mr-sm-2" style="font-size: large" id="field_category" name="category"
                     formControlName="categoryId">
                 <option [ngValue]="null" class="text-light" hidden>Select category</option>
@@ -43,3 +51,4 @@
         </div>
     </div>
 </form>
+
