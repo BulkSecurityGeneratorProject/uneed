@@ -7,7 +7,18 @@ import { CategoryService } from 'app/entities/category';
 import { ITag } from 'app/shared/model/tag.model';
 import { TagService } from 'app/entities/tag';
 import { CATEGORIES } from 'app/shared/constants/model.constants';
-
+import {
+  faCoffee,
+  faMapMarked,
+  faUsers,
+  faUtensils,
+  faCity,
+  faCarSide,
+  faLaptop,
+  faUserTie,
+  faDumbbell,
+  faPlaneDeparture
+} from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'jhi-search',
   templateUrl: './search.component.html',
@@ -15,6 +26,17 @@ import { CATEGORIES } from 'app/shared/constants/model.constants';
 })
 export class SearchComponent implements OnInit, OnDestroy {
   @Output() criteria: any = new EventEmitter();
+
+  faCoffee = faCoffee;
+  faMapMarked = faMapMarked;
+  faUsers = faUsers;
+  faUtensils = faUtensils;
+  faCity = faCity;
+  faCarSide = faCarSide;
+  faLaptop = faLaptop;
+  faUserTie = faUserTie;
+  faDumbbell = faDumbbell;
+  faPlaneDeparture = faPlaneDeparture;
 
   form = this.fb.group({
     type: ['service'],
