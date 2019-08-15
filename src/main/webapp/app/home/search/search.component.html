@@ -52,14 +52,19 @@
     </div>
 </form>
 
-<div>
-    <button class="btn btn-outline-warning text-light mx-2 my-3 p-md-4" data-toggle="tooltip" data-placement="bottom" data-original-title="Automotive">
-        <fa-icon [icon]="faCity" size="lg"></fa-icon>
-    </button>
-    <button class="btn btn-outline-warning text-light mx-2 my-3 p-md-4"><fa-icon [icon]="faCarSide" size="lg"></fa-icon></button>
-    <button class="btn btn-outline-warning text-light mx-2 my-3 p-md-4"><fa-icon [icon]="faLaptop" size="lg"></fa-icon></button>
-    <button class="btn btn-outline-warning text-light mx-2 my-3 p-md-4"><fa-icon [icon]="faUserTie" size="lg"></fa-icon></button>
-    <button class="btn btn-outline-warning text-light mx-2 my-3 p-md-4"><fa-icon [icon]="faDumbbell" size="lg"></fa-icon></button>
-    <button class="btn btn-outline-warning text-light mx-2 my-3 p-md-4"><fa-icon [icon]="faPlaneDeparture" size="lg"></fa-icon></button>
+<div class="row">
+    <div class="col">
+    <button class="btn btn-outline-warning text-light mx-2 my-4 p-md-4" matTooltip="Home & Garden"><fa-icon [icon]="faCity" size="lg"></fa-icon></button>
+    <button class="btn btn-outline-warning text-light mx-2 my-4 p-md-4" matTooltip="Automotive"><fa-icon [icon]="faCarSide" size="lg"></fa-icon></button>
+    <button class="btn btn-outline-warning text-light mx-2 my-4 p-md-4" matTooltip="Computer & Electronics"><fa-icon [icon]="faLaptop" size="lg"></fa-icon></button>
+    <button class="btn btn-outline-warning text-light mx-2 my-4 p-md-4" matTooltip="Small Business"><fa-icon [icon]="faUserTie" size="lg"></fa-icon></button>
+    <button class="btn btn-outline-warning text-light mx-2 my-4 p-md-4" matTooltip="Sports & Fitness"><fa-icon [icon]="faDumbbell" size="lg"></fa-icon></button>
+    <button class="btn btn-outline-warning text-light mx-2 my-4 p-md-4" matTooltip="Travel"><fa-icon [icon]="faPlaneDeparture" size="lg"></fa-icon></button>
+    </div>
 </div>
 
+<div class="row">
+    <div class="col">
+        <span class="badge badge-pill badge-secondary" *ngFor="let tag of commonTags" style="cursor: pointer">#{{tag}}</span>
+    </div>
+</div>

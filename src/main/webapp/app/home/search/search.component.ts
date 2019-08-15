@@ -38,6 +38,8 @@ export class SearchComponent implements OnInit, OnDestroy {
   faDumbbell = faDumbbell;
   faPlaneDeparture = faPlaneDeparture;
 
+  commonTags = ['home improvement', 'electrician', 'gardener', 'body shop', 'computer repair', 'local guide', 'travel agent'];
+
   form = this.fb.group({
     type: ['service'],
     content: [''],
