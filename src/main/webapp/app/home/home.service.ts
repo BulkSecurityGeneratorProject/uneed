@@ -38,24 +38,12 @@ export class HomeService {
   }
 
   getQuote() {
-    const quote = localStorage.getItem('quote');
-    if (quote) {
-      console.log('Quote from local...');
-      this.onQuote.next(JSON.parse(quote));
-    } else {
-      console.log('Fetch quote...');
-      this.fetchQuote();
-    }
+    this.fetchQuote().subscribe(quotes => {
+      this.onQuote.next(quotes[Math.floor(Math.random() * quotes.length)]);
+    });
   }
 
-  fetchQuote() {
-    const uri = 'https://quotes.rest/qod.json';
-    this.http.get(uri).subscribe(res => {
-      if (res && res['success']['total'] == 1) {
-        const quote = res['contents']['quotes'][0];
-        localStorage.setItem('quote', JSON.stringify(quote));
-        this.onQuote.next(quote);
-      }
-    });
+  fetchQuote(): Observable<any> {
+    return this.http.get('./content/file/quotes.json');
   }
 }

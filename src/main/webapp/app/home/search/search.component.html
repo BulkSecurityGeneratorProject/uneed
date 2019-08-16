@@ -1,4 +1,4 @@
-<div *ngIf="quote">
+<div *ngIf="quote" class="my-5">
     <div class="row">
         <div class="offset-md-2 col-md-8 col-sm-12">
             <span class="quote-content">"{{quote.quote}}"</span>
@@ -10,37 +10,15 @@
         </div>
     </div>
 </div>
-<!--<div class="row">-->
-<!--    <div>-->
+<div class="">
+    <div>
         <button class="btn btn-outline-info text-light mx-1 my-3" (click)="onTypeChange('service')"><fa-icon [icon]="faCoffee"></fa-icon> Service</button>
         <button class="btn btn-outline-info text-light mx-1 my-3" (click)="onTypeChange('place')"><fa-icon [icon]="faMapMarked"></fa-icon> Place</button>
         <button class="btn btn-outline-info text-light mx-1 my-3" (click)="onTypeChange('group')"><fa-icon [icon]="faUsers"></fa-icon> Group</button>
         <button class="btn btn-outline-info text-light mx-1 my-3" (click)="onTypeChange('restaurant')"><fa-icon [icon]="faUtensils"></fa-icon> Restaurant</button>
-<!--    </div>-->
-<!--</div>-->
+    </div>
+</div>
 <form role="form" novalidate  class="my-2 my-lg-0 p-3 search-form" (ngSubmit)="search()" [formGroup]="form">
-
-<!--    <div class="row">-->
-<!--        <div class="col-md-6 col-xs-12">-->
-<!--            <select class="" id="field_category" name="category" formControlName="categoryId">-->
-<!--                &lt;!&ndash;<option [ngValue]="null"></option>&ndash;&gt;-->
-<!--                <option [ngValue]="entry.id" *ngFor="let entry of categories; trackBy: trackCategoryById">{{entry.name}}</option>-->
-<!--            </select>-->
-<!--        </div>-->
-<!--    </div>-->
-
-<!--    <div class="row">-->
-<!--        <div class="col-md-12 col-xs-12">-->
-<!--            <div class="form-control">-->
-<!--            <input class="font-weight-bold" style="width: 80%; font-size: large" type="text"-->
-<!--                   placeholder="Search" formControlName="content">-->
-<!--            <button class="btn btn-primary my-2 my-sm-0" style="padding-right: 30px; padding-left: 30px" type="submit">-->
-<!--                <fa-icon icon="search"></fa-icon>-->
-<!--            </button>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-
     <div class="row">
         <div class="col">
             <input class="form-control mr-sm-2" style="font-size: large" type="text" placeholder="City" formControlName="location">
@@ -78,6 +56,8 @@
 
 <div class="row">
     <div class="col">
-        <span class="badge badge-pill badge-secondary" *ngFor="let tag of commonTags" style="cursor: pointer">#{{tag}}</span>
+        <span class="badge badge-pill badge-secondary badge-tag mr-md-1" *ngFor="let tag of commonTags">
+            <span class="font-weight-bold">#</span>{{tag}}
+        </span>
     </div>
 </div>
