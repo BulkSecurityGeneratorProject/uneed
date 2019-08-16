@@ -8,9 +8,13 @@ Navbar
 ========================================================================== */
 
 .navbar {
-  background: #349aed;
-  background: linear-gradient(145deg, #349aed 50%, #34d8ed 100%);
+  //background: #349aed;
+  //background: linear-gradient(145deg, #349aed 50%, #34d8ed 100%);
   transition: box-shadow 200ms ease-in;
+}
+
+.bg-dark {
+  background-color: rgba(0, 0, 0, 0.5) !important;
 }
 
 .navbar-transparent {
@@ -20,7 +24,7 @@ Navbar
 
 .navbar-version {
   font-size: 0.65em;
-  color: $navbar-light-color;
+  color: $navbar-dark-active-color;
 }
 
 .profile-image {
@@ -62,7 +66,7 @@ Logo styles
   width: 45px;
   display: inline-block;
   vertical-align: middle;
-  background: url('../../../content/images/uneed-logo.png') no-repeat center center;
+  background: url('../../../content/images/logo/uneed-logo.png') no-repeat center center;
   background-size: contain;
 }
 

@@ -7,4 +7,4 @@ export const DEBUG_INFO_ENABLED: boolean = !!process.env.DEBUG_INFO_ENABLED;
 export const SERVER_API_URL = process.env.SERVER_API_URL;
 export const BUILD_TIMESTAMP = process.env.BUILD_TIMESTAMP;
 
-export const AVATAR = require('../content/images/avatar-2.jpg');
+export const AVATAR = require('../content/images/logo/avatar-2.jpg');
