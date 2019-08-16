@@ -19,6 +19,7 @@ import {
   faDumbbell,
   faPlaneDeparture
 } from '@fortawesome/free-solid-svg-icons';
+import { HomeService } from 'app/home/home.service';
 @Component({
   selector: 'jhi-search',
   templateUrl: './search.component.html',
@@ -50,8 +51,14 @@ export class SearchComponent implements OnInit, OnDestroy {
   categories: ICategory[];
   tags: ITag[];
   hasCategory = true;
+  quote: any;
 
-  constructor(protected categoryService: CategoryService, protected tagService: TagService, private fb: FormBuilder) {}
+  constructor(
+    protected categoryService: CategoryService,
+    protected tagService: TagService,
+    private homeService: HomeService,
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit() {
     this.setCategory(CATEGORIES);
@@ -70,6 +77,13 @@ export class SearchComponent implements OnInit, OnDestroy {
     //     map((response: HttpResponse<ITag[]>) => response.body)
     //   )
     //   .subscribe((res: ITag[]) => (this.tags = res), (res: HttpErrorResponse) => this.onError(res.message));
+
+    this.homeService.onQuote.subscribe(quote => {
+      if (quote) {
+        console.log(quote);
+        this.quote = quote;
+      }
+    });
   }
 
   search() {
