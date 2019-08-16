@@ -8,7 +8,8 @@
 
 .bg-main-img {
   padding: 12em 0 6em;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../../content/images/bg/bg3.jpg');
+  //background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+  background-image: url('../../../content/images/bg/bg1.jpg');
   color: #fff;
   text-align: center;
 }
