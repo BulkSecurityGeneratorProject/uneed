@@ -6,7 +6,7 @@ import { JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 import { IUserJob } from 'app/shared/model/user-job.model';
 import { ITEMS_PER_PAGE } from 'app/shared';
 import { HomeService } from 'app/home/home.service';
-
+import { faListAlt, faBorderAll } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'jhi-entry',
   templateUrl: './entry.component.html'
@@ -25,6 +25,10 @@ export class EntryComponent implements OnInit, OnDestroy {
   previousPage: any;
   reverse: any;
 
+  faListAlt = faListAlt;
+  faBorderAll = faBorderAll;
+  listView: boolean;
+
   constructor(
     protected homeService: HomeService,
     protected parseLinks: JhiParseLinks,
@@ -32,6 +36,7 @@ export class EntryComponent implements OnInit, OnDestroy {
     protected activatedRoute: ActivatedRoute,
     protected router: Router
   ) {
+    this.listView = false;
     this.itemsPerPage = ITEMS_PER_PAGE;
     this.routeData = this.activatedRoute.data.subscribe(data => {
       this.page = data.pagingParams.page;

@@ -3,7 +3,25 @@
     <div class="alert alert-light" *ngIf="userJobs?.length === 0">
         <span jhiTranslate="uneedApp.userJob.home.notFound">No userJobs found</span>
     </div>
-    <div class="table-responsive table-hover" *ngIf="userJobs?.length > 0">
+    <div>
+        <button class="btn btn-xs p-2 m-1 pull-right" matTooltip="Gallery View" (click)="listView = false"><fa-icon [icon]="faBorderAll" size="lg"></fa-icon></button>
+        <button class="btn btn-xs p-2 m-1 pull-right" matTooltip="List View" (click)="listView = true"><fa-icon [icon]="faListAlt" size="lg"></fa-icon></button>
+    </div>
+    <div class="card-columns my-5" *ngIf="userJobs?.length > 0 && !listView">
+        <div *ngFor="let userJob of userJobs ;">
+            <div class="card border-info mb-3">
+                <div class="card-header">{{userJob.userLogin}}</div>
+                <div class="card-body">
+                    <h4 class="card-title">{{userJob.name}}</h4>
+                    <p class="card-text">{{userJob.description}}</p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Last updated {{userJob.lastUpdateDate | date:'yy-MM-dd HH:mm'}}</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="table-responsive table-hover" *ngIf="userJobs?.length > 0 && listView">
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
