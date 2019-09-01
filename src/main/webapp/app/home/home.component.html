@@ -1,13 +1,8 @@
-<div class="row">
+<div class="row bg-search-img">
     <div class="offset-md-1 col-md-10 col-xs-12">
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <jhi-search (criteria)="search($event)"></jhi-search>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12 col-xs-12">
-                <jhi-entry [criteria]="criteria"></jhi-entry>
             </div>
         </div>
     </div>
@@ -50,4 +45,13 @@
             <!--<span jhiTranslate="home.like">If you like JHipster, don't forget to give us a star on</span> <a href="https://github.com/jhipster/generator-jhipster" target="_blank" rel="noopener" jhiTranslate="home.github">GitHub</a>!-->
         <!--</p>-->
     <!--</div>-->
+</div>
+<div class="row">
+    <div class="offset-md-1 col-md-10 col-xs-12">
+        <div class="row">
+            <div class="col-md-12 col-xs-12">
+                <jhi-entry [criteria]="criteria"></jhi-entry>
+            </div>
+        </div>
+    </div>
 </div>

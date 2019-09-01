@@ -90,17 +90,19 @@ export class NavbarComponent implements OnInit, AfterContentInit {
   ngAfterContentInit() {
     this.domNav = document.getElementById('nav');
     (() => {
-      window.addEventListener('scroll', () => {
-        window.scrollY > 1.5 ? this.addTransparent() : this.removeTransparent();
-      });
+      window.addEventListener('scroll', this.listener);
     })();
   }
 
-  addTransparent() {
+  private listener = () => {
+    window.scrollY > 1.5 ? this.addTransparent() : this.removeTransparent();
+  };
+
+  private addTransparent() {
     this.domNav.classList.remove('navbar-transparent');
   }
 
-  removeTransparent() {
+  private removeTransparent() {
     this.domNav.classList.add('navbar-transparent');
   }
 }

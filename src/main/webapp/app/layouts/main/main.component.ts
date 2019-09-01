@@ -11,6 +11,8 @@ import { JhiLanguageHelper } from 'app/core';
 export class JhiMainComponent implements OnInit {
   constructor(private jhiLanguageHelper: JhiLanguageHelper, private router: Router) {}
 
+  isHome: boolean;
+
   private getPageTitle(routeSnapshot: ActivatedRouteSnapshot) {
     let title: string = routeSnapshot.data && routeSnapshot.data['pageTitle'] ? routeSnapshot.data['pageTitle'] : 'uneedApp';
     if (routeSnapshot.firstChild) {
@@ -23,6 +25,7 @@ export class JhiMainComponent implements OnInit {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.jhiLanguageHelper.updateTitle(this.getPageTitle(this.router.routerState.snapshot.root));
+        this.isHome = event.url == '/';
       }
       if (event instanceof NavigationError && event.error.status === 404) {
         this.router.navigate(['/404']);

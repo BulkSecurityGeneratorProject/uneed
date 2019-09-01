@@ -21,3 +21,11 @@ Main page styles
     background-size: contain;
   }
 }
+
+.bg-search-img {
+  padding: 6em 0 6em;
+  //background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+  background-image: url('../../content/images/bg/bg1.jpg');
+  color: #fff;
+  text-align: center;
+}

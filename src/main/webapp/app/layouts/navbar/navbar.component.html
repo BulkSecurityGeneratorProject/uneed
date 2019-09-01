@@ -123,19 +123,6 @@
                     </li>
                 </ul>
             </li>
-            <li ngbDropdown class="nav-item dropdown pointer" *ngIf="languages && languages.length > 1">
-                <a class="nav-link dropdown-toggle margin-top-10" ngbDropdownToggle href="javascript:void(0);" id="languagesnavBarDropdown">
-                    <span>
-                        <fa-icon class="" icon="flag" size="lg"></fa-icon>
-                        <span style="text-transform: uppercase">{{lanKey?lanKey : 'EN'}}</span>
-                    </span>
-                </a>
-                <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="languagesnavBarDropdown">
-                    <li *ngFor="let language of languages">
-                        <a class="dropdown-item" [jhiActiveMenu]="language" href="javascript:void(0);" (click)="changeLanguage(language);collapseNavbar();">{{language | findLanguageFromKey}}</a>
-                    </li>
-                </ul>
-            </li>
             <li *ngSwitchCase="false" class="nav-item pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link" (click)="login();collapseNavbar()" id="nav-login" >
                     <!--<fa-icon icon="sign-in-alt" fixedWidth="true"></fa-icon>-->
@@ -209,6 +196,18 @@
                             <!--<span jhiTranslate="global.menu.account.register">Register</span>-->
                         <!--</a>-->
                     <!--</li>-->
+                </ul>
+            </li>
+            <li ngbDropdown class="nav-item dropdown pointer" *ngIf="languages && languages.length > 1" placement="left-bottom">
+                <a class="nav-link dropdown-toggle margin-top-10" ngbDropdownToggle href="javascript:void(0);" id="languagesnavBarDropdown">
+                    <span>
+                        <span style="text-transform: uppercase">{{lanKey?lanKey : 'EN'}}</span>
+                    </span>
+                </a>
+                <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="languagesnavBarDropdown" style="left: -55px;">
+                    <li *ngFor="let language of languages">
+                        <a class="dropdown-item" [jhiActiveMenu]="language" href="javascript:void(0);" (click)="changeLanguage(language);collapseNavbar();">{{language | findLanguageFromKey}}</a>
+                    </li>
                 </ul>
             </li>
             <li *ngSwitchCase="true" class="nav-item pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
