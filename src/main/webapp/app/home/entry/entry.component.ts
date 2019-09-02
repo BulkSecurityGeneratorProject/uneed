@@ -127,9 +127,16 @@ export class EntryComponent implements OnInit, OnDestroy {
     this.links = this.parseLinks.parse(headers.get('link'));
     this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
     this.userJobs = data;
+    this.setRating();
   }
 
   protected onError(errorMessage: string) {
     this.jhiAlertService.error(errorMessage, null, null);
+  }
+
+  private setRating() {
+    this.userJobs.forEach(job => {
+      job['rating'] = Math.ceil(Math.random() * 5);
+    });
   }
 }

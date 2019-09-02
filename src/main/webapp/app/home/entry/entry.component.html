@@ -17,6 +17,9 @@
                 </div>
                 <div class="card-footer">
                     <small class="text-muted">Last updated {{userJob.lastUpdateDate | date:'yy-MM-dd HH:mm'}}</small>
+                    <small class="pull-right">
+                        <mat-star-rating [rating]="userJob.rating" [starCount]="5" [color]="'accent'"></mat-star-rating>
+                    </small>
                 </div>
             </div>
         </div>
